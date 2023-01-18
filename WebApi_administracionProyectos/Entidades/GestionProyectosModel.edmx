@@ -1,0 +1,2794 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GestionProyectosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Alm_Almacenes">
+          <Key>
+            <PropertyRef Name="id_Almacen" />
+          </Key>
+          <Property Name="id_Almacen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Empresa" Type="int" Nullable="false" />
+          <Property Name="id_Local" Type="int" Nullable="false" />
+          <Property Name="id_Delegacion" Type="int" Nullable="false" />
+          <Property Name="id_TipoAlmacen" Type="int" Nullable="false" />
+          <Property Name="descripcion_Almacen" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="direccion_Almacen" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="MatNormall_Almacen" Type="varchar" MaxLength="5" />
+          <Property Name="MatUsado_Almacen" Type="varchar" MaxLength="5" />
+          <Property Name="MatBaja_Almacen" Type="varchar" MaxLength="5" />
+          <Property Name="stock_DetalleGuia" Type="varchar" MaxLength="5" />
+          <Property Name="Stock_multiOtContable" Type="varchar" MaxLength="5" />
+          <Property Name="stock_OtGeneral" Type="varchar" MaxLength="5" />
+          <Property Name="Stock_EmpresObra" Type="varchar" MaxLength="5" />
+          <Property Name="Stock_EmpresPersonal" Type="varchar" MaxLength="5" />
+          <Property Name="Anterior_Almacen" Type="varchar" MaxLength="20" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="MatCustodia_almacen" Type="varchar" MaxLength="5" />
+          <Property Name="id_Proyecto" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Materiales">
+          <Key>
+            <PropertyRef Name="id_Material" />
+          </Key>
+          <Property Name="id_Material" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_Interno" Type="varchar" MaxLength="30" />
+          <Property Name="codigo_Navision" Type="varchar" MaxLength="30" />
+          <Property Name="descripcion_Material" Type="varchar" MaxLength="200" />
+          <Property Name="abreviatura_Material" Type="varchar" MaxLength="50" />
+          <Property Name="id_UnidadMedida" Type="int" />
+          <Property Name="id_FamiliaMaterial" Type="int" />
+          <Property Name="tiempoVida_Material" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="stockMinimo_Material" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="precioCosto_Material" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="precioPromedio_Material" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="ultimoPrecio_Material" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="exige_Medido" Type="varchar" MaxLength="2" />
+          <Property Name="exige_FechaVence" Type="varchar" MaxLength="2" />
+          <Property Name="exige_Kardex" Type="varchar" MaxLength="2" />
+          <Property Name="exige_NroSerie" Type="varchar" MaxLength="2" />
+          <Property Name="exige_Bobina" Type="varchar" MaxLength="2" />
+          <Property Name="exige_CableParticionado" Type="varchar" MaxLength="2" />
+          <Property Name="esFactura" Type="varchar" MaxLength="2" />
+          <Property Name="esMenudo" Type="varchar" MaxLength="2" />
+          <Property Name="Anterior_Material" Type="varchar" MaxLength="30" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="Codigo_Cliente" Type="varchar" MaxLength="30" />
+          <Property Name="esValorizable" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Materiales_Familia">
+          <Key>
+            <PropertyRef Name="id_FamiliaMaterial" />
+          </Key>
+          <Property Name="id_FamiliaMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_FamiliaMaterial" Type="varchar" MaxLength="100" />
+          <Property Name="abreviatura_FamiliaMaterial" Type="varchar" MaxLength="30" />
+          <Property Name="Anterior_Familia" Type="varchar" MaxLength="20" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="HojaRora" Type="varchar" MaxLength="2" />
+          <Property Name="RetiroMaterial" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Movimientos_Almacen">
+          <Key>
+            <PropertyRef Name="id_MovAlmacen" />
+          </Key>
+          <Property Name="id_MovAlmacen" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="descripcion_MovAlmacen" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="abreviatura_MovAlmacen" Type="varchar" MaxLength="50" />
+          <Property Name="tipo_MovAlmacen" Type="char" MaxLength="1" />
+          <Property Name="codigo_Sunat" Type="varchar" MaxLength="5" />
+          <Property Name="afectaStock_MovAlmacen" Type="varchar" MaxLength="5" />
+          <Property Name="noAfectaStock_MovAlmacen" Type="varchar" MaxLength="5" />
+          <Property Name="Anterior_Movimiento" Type="varchar" MaxLength="20" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Tipos_Almacen">
+          <Key>
+            <PropertyRef Name="id_TipoAlmacen" />
+          </Key>
+          <Property Name="id_TipoAlmacen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_TipoAlmacen" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Unidades_Medida">
+          <Key>
+            <PropertyRef Name="id_UnidadMedida" />
+          </Key>
+          <Property Name="id_UnidadMedida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_UnidadMedida" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="abreviatura_UnidadMedida" Type="varchar" MaxLength="30" />
+          <Property Name="codigo_Sunat" Type="varchar" MaxLength="5" />
+          <Property Name="Anterior_UM" Type="varchar" MaxLength="20" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Areas">
+          <Key>
+            <PropertyRef Name="id_Area" />
+          </Key>
+          <Property Name="id_Area" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_area" Type="varchar" MaxLength="150" />
+          <Property Name="descripcion_area" Type="varchar" MaxLength="50" />
+          <Property Name="CodigoEdelnor" Type="int" />
+          <Property Name="proceso_area" Type="varchar" MaxLength="5" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="tipoServicio" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tbl_Cargo_Personal">
+          <Key>
+            <PropertyRef Name="id_Cargo" />
+          </Key>
+          <Property Name="id_Cargo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_cargo" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="co_pues_trab" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrilla_Area">
+          <Key>
+            <PropertyRef Name="id_Cuadrilla_Area" />
+          </Key>
+          <Property Name="id_Cuadrilla_Area" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Cuadrilla" Type="int" Nullable="false" />
+          <Property Name="id_Area" Type="int" Nullable="false" />
+          <Property Name="Prioridad" Type="varchar" MaxLength="5" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrilla_Colaboradora">
+          <Key>
+            <PropertyRef Name="id_CuadrillaColaborador" />
+          </Key>
+          <Property Name="id_CuadrillaColaborador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Cuadrilla" Type="int" Nullable="false" />
+          <Property Name="id_CtaCte_Colaborador" Type="int" Nullable="false" />
+          <Property Name="Prioridad" Type="varchar" MaxLength="5" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrilla_Delegacion">
+          <Key>
+            <PropertyRef Name="id_Cuadrilla_Delegacion" />
+          </Key>
+          <Property Name="id_Cuadrilla_Delegacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Delegacion" Type="int" />
+          <Property Name="id_Cuadrilla" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrilla_Personal">
+          <Key>
+            <PropertyRef Name="id_Cuadrilla_Personal" />
+          </Key>
+          <Property Name="id_Cuadrilla_Personal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Cuadrilla" Type="int" Nullable="false" />
+          <Property Name="id_Personal" Type="int" Nullable="false" />
+          <Property Name="Prioridad" Type="varchar" MaxLength="5" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrillas">
+          <Key>
+            <PropertyRef Name="id_Cuadrilla" />
+          </Key>
+          <Property Name="id_Cuadrilla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Empresa" Type="int" />
+          <Property Name="codigo_Cuadrilla" Type="varchar" MaxLength="20" />
+          <Property Name="descripcion_Cuadrilla" Type="varchar" MaxLength="150" />
+          <Property Name="tipo_Cuadrilla" Type="varchar" MaxLength="5" />
+          <Property Name="id_colaborador" Type="int" />
+          <Property Name="id_Local" Type="int" />
+          <Property Name="salidaMat_Cuadrilla" Type="varchar" MaxLength="5" />
+          <Property Name="instalacionMat_Cuadrilla" Type="varchar" MaxLength="5" />
+          <Property Name="Anterior_Codigo" Type="varchar" MaxLength="20" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="id_Delegacion" Type="int" />
+          <Property Name="id_Proyecto" Type="int" />
+          <Property Name="id_vehiculo" Type="int" />
+          <Property Name="nro_placa" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tbl_CuentaCorriente">
+          <Key>
+            <PropertyRef Name="id_CtaCte" />
+          </Key>
+          <Property Name="id_CtaCte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nroRUC_CtaCte" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipoPersona_CtaCte" Type="varchar" MaxLength="5" />
+          <Property Name="razonSocial_CtaCte" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="direccion_CtaCte" Type="varchar" MaxLength="150" />
+          <Property Name="telefono1_CtaCte" Type="varchar" MaxLength="30" />
+          <Property Name="telefono2_CtaCte" Type="varchar" MaxLength="30" />
+          <Property Name="paginaWeb_CtaCte" Type="varchar" MaxLength="100" />
+          <Property Name="contacto_CtaCte" Type="varchar" MaxLength="100" />
+          <Property Name="email_CtaCte" Type="varchar" MaxLength="100" />
+          <Property Name="proveedor_CtaCte" Type="varchar" MaxLength="2" />
+          <Property Name="cliente_CtaCte" Type="varchar" MaxLength="2" />
+          <Property Name="transportista" Type="varchar" MaxLength="2" />
+          <Property Name="colaborador_CtaCte" Type="varchar" MaxLength="2" />
+          <Property Name="salidaMat_CtaCte" Type="varchar" MaxLength="2" />
+          <Property Name="devolucionMat_CtaCte" Type="varchar" MaxLength="2" />
+          <Property Name="transferenciaOrigen_CtaCte" Type="varchar" MaxLength="2" />
+          <Property Name="transferenciaDestino_CtaCte" Type="varchar" MaxLength="2" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_CuentaCorriente_Servicio">
+          <Key>
+            <PropertyRef Name="id_CtaCte_Servicio" />
+          </Key>
+          <Property Name="id_CtaCte_Servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_CtaCte" Type="int" Nullable="false" />
+          <Property Name="id_Area" Type="int" Nullable="false" />
+          <Property Name="prioridad_CtaCte_Servicio" Type="varchar" MaxLength="2" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Definicion_Opciones">
+          <Key>
+            <PropertyRef Name="id_Opcion" />
+          </Key>
+          <Property Name="id_Opcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_opcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="url_opcion" Type="varchar" MaxLength="200" />
+          <Property Name="parentID" Type="int" />
+          <Property Name="nombreParentID" Type="varchar" MaxLength="150" />
+          <Property Name="urlImagen_Opcion" Type="varchar" MaxLength="200" />
+          <Property Name="orden_Opcion" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Delegacion">
+          <Key>
+            <PropertyRef Name="id_Delegacion" />
+          </Key>
+          <Property Name="id_Delegacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Empresa" Type="int" Nullable="false" />
+          <Property Name="codigo_delegacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre_delegacion" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Empresa_Usuario">
+          <Key>
+            <PropertyRef Name="id_Empresa_Usuario" />
+          </Key>
+          <Property Name="id_Empresa_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Empresa" Type="int" Nullable="false" />
+          <Property Name="id_Usuario" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Empresas">
+          <Key>
+            <PropertyRef Name="id_Empresa" />
+          </Key>
+          <Property Name="id_Empresa" Type="int" Nullable="false" />
+          <Property Name="codigo_interno_empresa" Type="varchar" MaxLength="4" />
+          <Property Name="ruc_empresa" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="razonsocial_empresa" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="actividad_empresa" Type="varchar" MaxLength="150" />
+          <Property Name="ciiu_empresa" Type="varchar" MaxLength="20" />
+          <Property Name="direccion_empresa" Type="varchar" MaxLength="150" />
+          <Property Name="representante_empresa" Type="varchar" MaxLength="100" />
+          <Property Name="telefono1_empresa" Type="varchar" MaxLength="30" />
+          <Property Name="telefono2_empresa" Type="varchar" MaxLength="30" />
+          <Property Name="email_empresa" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Locales">
+          <Key>
+            <PropertyRef Name="Id_Local" />
+          </Key>
+          <Property Name="Id_Local" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Empresa" Type="int" />
+          <Property Name="nombre_local" Type="varchar" MaxLength="100" />
+          <Property Name="direccion_local" Type="varchar" MaxLength="150" />
+          <Property Name="Id_Ubicacion" Type="int" />
+          <Property Name="orden_local" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Obra_TD">
+          <Key>
+            <PropertyRef Name="id_TD" />
+          </Key>
+          <Property Name="id_TD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_TipoTD" Type="int" />
+          <Property Name="Codigo_TD" Type="varchar" MaxLength="20" />
+          <Property Name="id_EstaCliente" Type="varchar" MaxLength="5" />
+          <Property Name="descripcion_TD" Type="varchar" MaxLength="300" />
+          <Property Name="id_Area" Type="int" />
+          <Property Name="direccion_TD" Type="varchar" MaxLength="150" />
+          <Property Name="fechaRecepcion_TD" Type="datetime" />
+          <Property Name="fechaInicio_TD" Type="datetime" />
+          <Property Name="fechaTermino_TD" Type="datetime" />
+          <Property Name="id_Cliente_TD" Type="int" />
+          <Property Name="id_Colaborador_TD" Type="int" />
+          <Property Name="id_Ubigeo" Type="int" />
+          <Property Name="salidaMat_TD" Type="varchar" MaxLength="5" />
+          <Property Name="devolucionMat_TD" Type="varchar" MaxLength="5" />
+          <Property Name="transferenciaOrigen_TD" Type="varchar" MaxLength="5" />
+          <Property Name="transferenciaDestino_TD" Type="varchar" MaxLength="5" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="id_contrato" Type="int" />
+          <Property Name="numero_contrato" Type="varchar" MaxLength="20" />
+          <Property Name="id_inspectorCliente" Type="int" />
+          <Property Name="fecPtaServicio_TD" Type="datetime" />
+          <Property Name="fecVencimiento_TD" Type="datetime" />
+          <Property Name="nroPrevisto_TD" Type="varchar" MaxLength="30" />
+          <Property Name="fecIniPrevisto_TD" Type="datetime" />
+          <Property Name="fecFinPrevisto_TD" Type="datetime" />
+          <Property Name="nroProyecto_TD" Type="varchar" MaxLength="30" />
+          <Property Name="id_distrito" Type="int" />
+          <Property Name="id_zona" Type="int" />
+          <Property Name="set_TD" Type="varchar" MaxLength="20" />
+          <Property Name="alimentador_TD" Type="varchar" MaxLength="20" />
+          <Property Name="subEstacion_TD" Type="varchar" MaxLength="100" />
+          <Property Name="tipoClase_TD" Type="varchar" MaxLength="5" />
+          <Property Name="maniobra_TD" Type="varchar" MaxLength="5" />
+          <Property Name="cecoTD" Type="varchar" MaxLength="50" />
+          <Property Name="factor_contrato" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="id_Empresa" Type="int" />
+          <Property Name="id_Delegacion" Type="int" />
+          <Property Name="id_Proyecto" Type="int" />
+          <Property Name="Estado_OT_TD" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Obra_TD_Empresa">
+          <Key>
+            <PropertyRef Name="id_ObraTD_Empresa" />
+          </Key>
+          <Property Name="id_ObraTD_Empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_TD" Type="int" Nullable="false" />
+          <Property Name="id_Colaborador_TD" Type="int" Nullable="false" />
+          <Property Name="prioridad_TD" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Perfil">
+          <Key>
+            <PropertyRef Name="id_Perfil" />
+          </Key>
+          <Property Name="id_Perfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Empresa" Type="int" Nullable="false" />
+          <Property Name="nombre_perfil" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion_perfil" Type="varchar" MaxLength="150" />
+          <Property Name="icono_perfil" Type="varchar" MaxLength="150" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Personal">
+          <Key>
+            <PropertyRef Name="id_Personal" />
+          </Key>
+          <Property Name="id_Personal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nroDoc_Personal" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipoDoc_Personal" Type="varchar" MaxLength="5" />
+          <Property Name="apellidos_Personal" Type="varchar" MaxLength="150" />
+          <Property Name="nombres_Personal" Type="varchar" MaxLength="100" />
+          <Property Name="direccion_Personal" Type="varchar" MaxLength="150" />
+          <Property Name="telefono_Personal" Type="varchar" MaxLength="30" />
+          <Property Name="costoMo_Personal" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="fechaIngreso_Personal" Type="datetime" />
+          <Property Name="id_Cargo" Type="int" />
+          <Property Name="tipoPersonal" Type="varchar" MaxLength="5" />
+          <Property Name="fechaCese_Personal" Type="datetime" />
+          <Property Name="retiraMate_Personal" Type="varchar" MaxLength="5" />
+          <Property Name="retiraEquipamiento_Personal" Type="varchar" MaxLength="5" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="fotoBase64" Type="nvarchar(max)" />
+          <Property Name="id_Empresa" Type="int" />
+          <Property Name="id_Delegacion" Type="int" />
+          <Property Name="id_Proyecto" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Proyecto">
+          <Key>
+            <PropertyRef Name="id_Proyecto" />
+          </Key>
+          <Property Name="id_Proyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Delegacio" Type="int" Nullable="false" />
+          <Property Name="id_Empreasa" Type="int" Nullable="false" />
+          <Property Name="nombre_proyecto" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Proyecto_Delegacion">
+          <Key>
+            <PropertyRef Name="id_proyecto_delegacion" />
+          </Key>
+          <Property Name="id_proyecto_delegacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_baremo" Type="int" />
+          <Property Name="id_empresa" Type="int" />
+          <Property Name="id_delegacion" Type="int" />
+          <Property Name="id_proyecto" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Tipo_Cambio">
+          <Key>
+            <PropertyRef Name="id_TipoCambio" />
+          </Key>
+          <Property Name="id_TipoCambio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Moneda" Type="int" Nullable="false" />
+          <Property Name="fecha_TipoCambio" Type="datetime" Nullable="false" />
+          <Property Name="id_Moneda_Cambio" Type="int" Nullable="false" />
+          <Property Name="compra_TipoCambio" Type="decimal" Precision="28" Scale="6" Nullable="false" />
+          <Property Name="venta_TipoCambio" Type="decimal" Precision="28" Scale="6" Nullable="false" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Tipo_Documento">
+          <Key>
+            <PropertyRef Name="Id_TipoDocumento" />
+          </Key>
+          <Property Name="Id_TipoDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion_TipoDocumento" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="abreviatura_TipoDocumento" Type="varchar" MaxLength="10" />
+          <Property Name="codigo_Sunat" Type="varchar" MaxLength="5" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Tipo_TD">
+          <Key>
+            <PropertyRef Name="id_TipoObra" />
+          </Key>
+          <Property Name="id_TipoObra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="abreviatura_TipoObra" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descripcion_TipoObra" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="codAnt_TipoObra" Type="varchar" MaxLength="5" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_TipoDocumento">
+          <Key>
+            <PropertyRef Name="id_TipoDocumento" />
+          </Key>
+          <Property Name="id_TipoDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion_Vehiculo" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Usuarios">
+          <Key>
+            <PropertyRef Name="id_Usuario" />
+          </Key>
+          <Property Name="id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nrodoc_usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apellidos_usuario" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="nombres_usuario" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="email_usuario" Type="varchar" MaxLength="150" />
+          <Property Name="Adm_Usuario" Type="varchar" MaxLength="2" />
+          <Property Name="Sys_Usuario" Type="varchar" MaxLength="2" />
+          <Property Name="id_Cargo" Type="int" Nullable="false" />
+          <Property Name="id_Area" Type="int" Nullable="false" />
+          <Property Name="tipo_usuario" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="id_Empresa_Pertenece" Type="int" />
+          <Property Name="fotoBase64" Type="nvarchar(max)" />
+          <Property Name="fotourl" Type="varchar" MaxLength="250" />
+          <Property Name="login_usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contrasenia_usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_Perfil" Type="int" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="Acceso_Movil_Tipo" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="tbl_Web_Aceesos">
+          <Key>
+            <PropertyRef Name="id_Acceso" />
+          </Key>
+          <Property Name="id_Acceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Usuario" Type="int" />
+          <Property Name="id_Opcion" Type="int" />
+          <Property Name="id_WebPage" Type="int" />
+          <Property Name="id_WebEvento" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Web_Page">
+          <Key>
+            <PropertyRef Name="id_WebPage" />
+          </Key>
+          <Property Name="id_WebPage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Opcion" Type="int" Nullable="false" />
+          <Property Name="nombre_webpage" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="url_webpage" Type="varchar" MaxLength="150" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Cuadrilla">
+          <End Role="tbl_Cuadrillas" Type="Self.tbl_Cuadrillas" Multiplicity="0..1" />
+          <End Role="tbl_Cuadrilla_Delegacion" Type="Self.tbl_Cuadrilla_Delegacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cuadrillas">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Delegacion">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Delgacion">
+          <End Role="tbl_Delegacion" Type="Self.tbl_Delegacion" Multiplicity="0..1" />
+          <End Role="tbl_Cuadrilla_Delegacion" Type="Self.tbl_Cuadrilla_Delegacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Delegacion">
+              <PropertyRef Name="id_Delegacion" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Delegacion">
+              <PropertyRef Name="id_Delegacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Alm_Almacenes_tbl_Alm_Tipos_Almacen">
+          <End Role="tbl_Alm_Tipos_Almacen" Type="Self.tbl_Alm_Tipos_Almacen" Multiplicity="1" />
+          <End Role="tbl_Alm_Almacenes" Type="Self.tbl_Alm_Almacenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Alm_Tipos_Almacen">
+              <PropertyRef Name="id_TipoAlmacen" />
+            </Principal>
+            <Dependent Role="tbl_Alm_Almacenes">
+              <PropertyRef Name="id_TipoAlmacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Alm_Almacenes_tbl_Locales">
+          <End Role="tbl_Locales" Type="Self.tbl_Locales" Multiplicity="1" />
+          <End Role="tbl_Alm_Almacenes" Type="Self.tbl_Alm_Almacenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Locales">
+              <PropertyRef Name="Id_Local" />
+            </Principal>
+            <Dependent Role="tbl_Alm_Almacenes">
+              <PropertyRef Name="id_Local" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Alm_Materiales_tbl_Alm_Materiales_Familia">
+          <End Role="tbl_Alm_Materiales_Familia" Type="Self.tbl_Alm_Materiales_Familia" Multiplicity="0..1" />
+          <End Role="tbl_Alm_Materiales" Type="Self.tbl_Alm_Materiales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Alm_Materiales_Familia">
+              <PropertyRef Name="id_FamiliaMaterial" />
+            </Principal>
+            <Dependent Role="tbl_Alm_Materiales">
+              <PropertyRef Name="id_FamiliaMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Alm_Materiales_tbl_Alm_Unidades_Medida">
+          <End Role="tbl_Alm_Unidades_Medida" Type="Self.tbl_Alm_Unidades_Medida" Multiplicity="0..1" />
+          <End Role="tbl_Alm_Materiales" Type="Self.tbl_Alm_Materiales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Alm_Unidades_Medida">
+              <PropertyRef Name="id_UnidadMedida" />
+            </Principal>
+            <Dependent Role="tbl_Alm_Materiales">
+              <PropertyRef Name="id_UnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Area_tbl_Areas">
+          <End Role="tbl_Areas" Type="Self.tbl_Areas" Multiplicity="1" />
+          <End Role="tbl_Cuadrilla_Area" Type="Self.tbl_Cuadrilla_Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Areas">
+              <PropertyRef Name="id_Area" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Area">
+              <PropertyRef Name="id_Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Area_tbl_Cuadrillas">
+          <End Role="tbl_Cuadrillas" Type="Self.tbl_Cuadrillas" Multiplicity="1" />
+          <End Role="tbl_Cuadrilla_Area" Type="Self.tbl_Cuadrilla_Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cuadrillas">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Area">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Colaboradora_tbl_Cuadrillas">
+          <End Role="tbl_Cuadrillas" Type="Self.tbl_Cuadrillas" Multiplicity="1" />
+          <End Role="tbl_Cuadrilla_Colaboradora" Type="Self.tbl_Cuadrilla_Colaboradora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cuadrillas">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Colaboradora">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Colaboradora_tbl_CuentaCorriente">
+          <End Role="tbl_CuentaCorriente" Type="Self.tbl_CuentaCorriente" Multiplicity="1" />
+          <End Role="tbl_Cuadrilla_Colaboradora" Type="Self.tbl_Cuadrilla_Colaboradora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CuentaCorriente">
+              <PropertyRef Name="id_CtaCte" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Colaboradora">
+              <PropertyRef Name="id_CtaCte_Colaborador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Personal_tbl_Cuadrillas">
+          <End Role="tbl_Cuadrillas" Type="Self.tbl_Cuadrillas" Multiplicity="1" />
+          <End Role="tbl_Cuadrilla_Personal" Type="Self.tbl_Cuadrilla_Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cuadrillas">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Personal">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Personal_tbl_Personal">
+          <End Role="tbl_Personal" Type="Self.tbl_Personal" Multiplicity="1" />
+          <End Role="tbl_Cuadrilla_Personal" Type="Self.tbl_Cuadrilla_Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Personal">
+              <PropertyRef Name="id_Personal" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Personal">
+              <PropertyRef Name="id_Personal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_CuentaCorriente_Servicio_tbl_Areas">
+          <End Role="tbl_Areas" Type="Self.tbl_Areas" Multiplicity="1" />
+          <End Role="tbl_CuentaCorriente_Servicio" Type="Self.tbl_CuentaCorriente_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Areas">
+              <PropertyRef Name="id_Area" />
+            </Principal>
+            <Dependent Role="tbl_CuentaCorriente_Servicio">
+              <PropertyRef Name="id_Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_CuentaCorriente_Servicio_tbl_CuentaCorriente">
+          <End Role="tbl_CuentaCorriente" Type="Self.tbl_CuentaCorriente" Multiplicity="1" />
+          <End Role="tbl_CuentaCorriente_Servicio" Type="Self.tbl_CuentaCorriente_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CuentaCorriente">
+              <PropertyRef Name="id_CtaCte" />
+            </Principal>
+            <Dependent Role="tbl_CuentaCorriente_Servicio">
+              <PropertyRef Name="id_CtaCte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Empresa_Usuario_tbl_Empresas">
+          <End Role="tbl_Empresas" Type="Self.tbl_Empresas" Multiplicity="1" />
+          <End Role="tbl_Empresa_Usuario" Type="Self.tbl_Empresa_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Empresas">
+              <PropertyRef Name="id_Empresa" />
+            </Principal>
+            <Dependent Role="tbl_Empresa_Usuario">
+              <PropertyRef Name="id_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Empresa_Usuario_tbl_Usuarios">
+          <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="1" />
+          <End Role="tbl_Empresa_Usuario" Type="Self.tbl_Empresa_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Usuarios">
+              <PropertyRef Name="id_Usuario" />
+            </Principal>
+            <Dependent Role="tbl_Empresa_Usuario">
+              <PropertyRef Name="id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Obra_TD_tbl_Areas">
+          <End Role="tbl_Areas" Type="Self.tbl_Areas" Multiplicity="0..1" />
+          <End Role="tbl_Obra_TD" Type="Self.tbl_Obra_TD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Areas">
+              <PropertyRef Name="id_Area" />
+            </Principal>
+            <Dependent Role="tbl_Obra_TD">
+              <PropertyRef Name="id_Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Obra_TD_tbl_Tipo_TD">
+          <End Role="tbl_Tipo_TD" Type="Self.tbl_Tipo_TD" Multiplicity="0..1" />
+          <End Role="tbl_Obra_TD" Type="Self.tbl_Obra_TD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Tipo_TD">
+              <PropertyRef Name="id_TipoObra" />
+            </Principal>
+            <Dependent Role="tbl_Obra_TD">
+              <PropertyRef Name="id_TipoTD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Personal_tbl_Cargo_Personal">
+          <End Role="tbl_Cargo_Personal" Type="Self.tbl_Cargo_Personal" Multiplicity="0..1" />
+          <End Role="tbl_Personal" Type="Self.tbl_Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cargo_Personal">
+              <PropertyRef Name="id_Cargo" />
+            </Principal>
+            <Dependent Role="tbl_Personal">
+              <PropertyRef Name="id_Cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Usuarios_tbl_Areas">
+          <End Role="tbl_Areas" Type="Self.tbl_Areas" Multiplicity="1" />
+          <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Areas">
+              <PropertyRef Name="id_Area" />
+            </Principal>
+            <Dependent Role="tbl_Usuarios">
+              <PropertyRef Name="id_Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Usuarios_tbl_Cargo_Personal">
+          <End Role="tbl_Cargo_Personal" Type="Self.tbl_Cargo_Personal" Multiplicity="1" />
+          <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cargo_Personal">
+              <PropertyRef Name="id_Cargo" />
+            </Principal>
+            <Dependent Role="tbl_Usuarios">
+              <PropertyRef Name="id_Cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Web_Aceesos_tbl_Definicion_Opciones">
+          <End Role="tbl_Definicion_Opciones" Type="Self.tbl_Definicion_Opciones" Multiplicity="0..1" />
+          <End Role="tbl_Web_Aceesos" Type="Self.tbl_Web_Aceesos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Definicion_Opciones">
+              <PropertyRef Name="id_Opcion" />
+            </Principal>
+            <Dependent Role="tbl_Web_Aceesos">
+              <PropertyRef Name="id_Opcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Web_Aceesos_tbl_Usuarios">
+          <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="0..1" />
+          <End Role="tbl_Web_Aceesos" Type="Self.tbl_Web_Aceesos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Usuarios">
+              <PropertyRef Name="id_Usuario" />
+            </Principal>
+            <Dependent Role="tbl_Web_Aceesos">
+              <PropertyRef Name="id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Web_Aceesos_tbl_Web_Page">
+          <End Role="tbl_Web_Page" Type="Self.tbl_Web_Page" Multiplicity="0..1" />
+          <End Role="tbl_Web_Aceesos" Type="Self.tbl_Web_Aceesos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Web_Page">
+              <PropertyRef Name="id_WebPage" />
+            </Principal>
+            <Dependent Role="tbl_Web_Aceesos">
+              <PropertyRef Name="id_WebPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Web_Page_tbl_Definicion_Opciones">
+          <End Role="tbl_Definicion_Opciones" Type="Self.tbl_Definicion_Opciones" Multiplicity="1" />
+          <End Role="tbl_Web_Page" Type="Self.tbl_Web_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Definicion_Opciones">
+              <PropertyRef Name="id_Opcion" />
+            </Principal>
+            <Dependent Role="tbl_Web_Page">
+              <PropertyRef Name="id_Opcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionProyectosModelStoreContainer">
+          <EntitySet Name="tbl_Alm_Almacenes" EntityType="Self.tbl_Alm_Almacenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Alm_Materiales" EntityType="Self.tbl_Alm_Materiales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Alm_Materiales_Familia" EntityType="Self.tbl_Alm_Materiales_Familia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Alm_Movimientos_Almacen" EntityType="Self.tbl_Alm_Movimientos_Almacen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Alm_Tipos_Almacen" EntityType="Self.tbl_Alm_Tipos_Almacen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Alm_Unidades_Medida" EntityType="Self.tbl_Alm_Unidades_Medida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Areas" EntityType="Self.tbl_Areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Cargo_Personal" EntityType="Self.tbl_Cargo_Personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Cuadrilla_Area" EntityType="Self.tbl_Cuadrilla_Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Cuadrilla_Colaboradora" EntityType="Self.tbl_Cuadrilla_Colaboradora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Cuadrilla_Delegacion" EntityType="Self.tbl_Cuadrilla_Delegacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Cuadrilla_Personal" EntityType="Self.tbl_Cuadrilla_Personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Cuadrillas" EntityType="Self.tbl_Cuadrillas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CuentaCorriente" EntityType="Self.tbl_CuentaCorriente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CuentaCorriente_Servicio" EntityType="Self.tbl_CuentaCorriente_Servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Definicion_Opciones" EntityType="Self.tbl_Definicion_Opciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Delegacion" EntityType="Self.tbl_Delegacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Empresa_Usuario" EntityType="Self.tbl_Empresa_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Empresas" EntityType="Self.tbl_Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Locales" EntityType="Self.tbl_Locales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Obra_TD" EntityType="Self.tbl_Obra_TD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Obra_TD_Empresa" EntityType="Self.tbl_Obra_TD_Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Perfil" EntityType="Self.tbl_Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Personal" EntityType="Self.tbl_Personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Proyecto" EntityType="Self.tbl_Proyecto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Proyecto_Delegacion" EntityType="Self.tbl_Proyecto_Delegacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Tipo_Cambio" EntityType="Self.tbl_Tipo_Cambio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Tipo_Documento" EntityType="Self.tbl_Tipo_Documento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Tipo_TD" EntityType="Self.tbl_Tipo_TD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_TipoDocumento" EntityType="Self.tbl_TipoDocumento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Usuarios" EntityType="Self.tbl_Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Web_Aceesos" EntityType="Self.tbl_Web_Aceesos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Web_Page" EntityType="Self.tbl_Web_Page" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cuadrilla" Association="Self.FK_Cuadrilla">
+            <End Role="tbl_Cuadrillas" EntitySet="tbl_Cuadrillas" />
+            <End Role="tbl_Cuadrilla_Delegacion" EntitySet="tbl_Cuadrilla_Delegacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Delgacion" Association="Self.FK_Delgacion">
+            <End Role="tbl_Delegacion" EntitySet="tbl_Delegacion" />
+            <End Role="tbl_Cuadrilla_Delegacion" EntitySet="tbl_Cuadrilla_Delegacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Alm_Almacenes_tbl_Alm_Tipos_Almacen" Association="Self.FK_tbl_Alm_Almacenes_tbl_Alm_Tipos_Almacen">
+            <End Role="tbl_Alm_Tipos_Almacen" EntitySet="tbl_Alm_Tipos_Almacen" />
+            <End Role="tbl_Alm_Almacenes" EntitySet="tbl_Alm_Almacenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Alm_Almacenes_tbl_Locales" Association="Self.FK_tbl_Alm_Almacenes_tbl_Locales">
+            <End Role="tbl_Locales" EntitySet="tbl_Locales" />
+            <End Role="tbl_Alm_Almacenes" EntitySet="tbl_Alm_Almacenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Alm_Materiales_tbl_Alm_Materiales_Familia" Association="Self.FK_tbl_Alm_Materiales_tbl_Alm_Materiales_Familia">
+            <End Role="tbl_Alm_Materiales_Familia" EntitySet="tbl_Alm_Materiales_Familia" />
+            <End Role="tbl_Alm_Materiales" EntitySet="tbl_Alm_Materiales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Alm_Materiales_tbl_Alm_Unidades_Medida" Association="Self.FK_tbl_Alm_Materiales_tbl_Alm_Unidades_Medida">
+            <End Role="tbl_Alm_Unidades_Medida" EntitySet="tbl_Alm_Unidades_Medida" />
+            <End Role="tbl_Alm_Materiales" EntitySet="tbl_Alm_Materiales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Area_tbl_Areas" Association="Self.FK_tbl_Cuadrilla_Area_tbl_Areas">
+            <End Role="tbl_Areas" EntitySet="tbl_Areas" />
+            <End Role="tbl_Cuadrilla_Area" EntitySet="tbl_Cuadrilla_Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Area_tbl_Cuadrillas" Association="Self.FK_tbl_Cuadrilla_Area_tbl_Cuadrillas">
+            <End Role="tbl_Cuadrillas" EntitySet="tbl_Cuadrillas" />
+            <End Role="tbl_Cuadrilla_Area" EntitySet="tbl_Cuadrilla_Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Colaboradora_tbl_Cuadrillas" Association="Self.FK_tbl_Cuadrilla_Colaboradora_tbl_Cuadrillas">
+            <End Role="tbl_Cuadrillas" EntitySet="tbl_Cuadrillas" />
+            <End Role="tbl_Cuadrilla_Colaboradora" EntitySet="tbl_Cuadrilla_Colaboradora" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Colaboradora_tbl_CuentaCorriente" Association="Self.FK_tbl_Cuadrilla_Colaboradora_tbl_CuentaCorriente">
+            <End Role="tbl_CuentaCorriente" EntitySet="tbl_CuentaCorriente" />
+            <End Role="tbl_Cuadrilla_Colaboradora" EntitySet="tbl_Cuadrilla_Colaboradora" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Personal_tbl_Cuadrillas" Association="Self.FK_tbl_Cuadrilla_Personal_tbl_Cuadrillas">
+            <End Role="tbl_Cuadrillas" EntitySet="tbl_Cuadrillas" />
+            <End Role="tbl_Cuadrilla_Personal" EntitySet="tbl_Cuadrilla_Personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Personal_tbl_Personal" Association="Self.FK_tbl_Cuadrilla_Personal_tbl_Personal">
+            <End Role="tbl_Personal" EntitySet="tbl_Personal" />
+            <End Role="tbl_Cuadrilla_Personal" EntitySet="tbl_Cuadrilla_Personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_CuentaCorriente_Servicio_tbl_Areas" Association="Self.FK_tbl_CuentaCorriente_Servicio_tbl_Areas">
+            <End Role="tbl_Areas" EntitySet="tbl_Areas" />
+            <End Role="tbl_CuentaCorriente_Servicio" EntitySet="tbl_CuentaCorriente_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_CuentaCorriente_Servicio_tbl_CuentaCorriente" Association="Self.FK_tbl_CuentaCorriente_Servicio_tbl_CuentaCorriente">
+            <End Role="tbl_CuentaCorriente" EntitySet="tbl_CuentaCorriente" />
+            <End Role="tbl_CuentaCorriente_Servicio" EntitySet="tbl_CuentaCorriente_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Empresa_Usuario_tbl_Empresas" Association="Self.FK_tbl_Empresa_Usuario_tbl_Empresas">
+            <End Role="tbl_Empresas" EntitySet="tbl_Empresas" />
+            <End Role="tbl_Empresa_Usuario" EntitySet="tbl_Empresa_Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Empresa_Usuario_tbl_Usuarios" Association="Self.FK_tbl_Empresa_Usuario_tbl_Usuarios">
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+            <End Role="tbl_Empresa_Usuario" EntitySet="tbl_Empresa_Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Obra_TD_tbl_Areas" Association="Self.FK_Tbl_Obra_TD_tbl_Areas">
+            <End Role="tbl_Areas" EntitySet="tbl_Areas" />
+            <End Role="tbl_Obra_TD" EntitySet="tbl_Obra_TD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Obra_TD_tbl_Tipo_TD" Association="Self.FK_Tbl_Obra_TD_tbl_Tipo_TD">
+            <End Role="tbl_Tipo_TD" EntitySet="tbl_Tipo_TD" />
+            <End Role="tbl_Obra_TD" EntitySet="tbl_Obra_TD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Personal_tbl_Cargo_Personal" Association="Self.FK_tbl_Personal_tbl_Cargo_Personal">
+            <End Role="tbl_Cargo_Personal" EntitySet="tbl_Cargo_Personal" />
+            <End Role="tbl_Personal" EntitySet="tbl_Personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Usuarios_tbl_Areas" Association="Self.FK_tbl_Usuarios_tbl_Areas">
+            <End Role="tbl_Areas" EntitySet="tbl_Areas" />
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Usuarios_tbl_Cargo_Personal" Association="Self.FK_tbl_Usuarios_tbl_Cargo_Personal">
+            <End Role="tbl_Cargo_Personal" EntitySet="tbl_Cargo_Personal" />
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Web_Aceesos_tbl_Definicion_Opciones" Association="Self.FK_tbl_Web_Aceesos_tbl_Definicion_Opciones">
+            <End Role="tbl_Definicion_Opciones" EntitySet="tbl_Definicion_Opciones" />
+            <End Role="tbl_Web_Aceesos" EntitySet="tbl_Web_Aceesos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Web_Aceesos_tbl_Usuarios" Association="Self.FK_tbl_Web_Aceesos_tbl_Usuarios">
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+            <End Role="tbl_Web_Aceesos" EntitySet="tbl_Web_Aceesos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Web_Aceesos_tbl_Web_Page" Association="Self.FK_tbl_Web_Aceesos_tbl_Web_Page">
+            <End Role="tbl_Web_Page" EntitySet="tbl_Web_Page" />
+            <End Role="tbl_Web_Aceesos" EntitySet="tbl_Web_Aceesos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Web_Page_tbl_Definicion_Opciones" Association="Self.FK_tbl_Web_Page_tbl_Definicion_Opciones">
+            <End Role="tbl_Definicion_Opciones" EntitySet="tbl_Definicion_Opciones" />
+            <End Role="tbl_Web_Page" EntitySet="tbl_Web_Page" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionProyectosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Definicion_Opciones">
+          <Key>
+            <PropertyRef Name="id_Opcion" />
+          </Key>
+          <Property Name="id_Opcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_opcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url_opcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="parentID" Type="Int32" />
+          <Property Name="nombreParentID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="urlImagen_Opcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="orden_Opcion" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Web_Aceesos" Relationship="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Definicion_Opciones" FromRole="tbl_Definicion_Opciones" ToRole="tbl_Web_Aceesos" />
+          <NavigationProperty Name="tbl_Web_Page" Relationship="GestionProyectosModel.FK_tbl_Web_Page_tbl_Definicion_Opciones" FromRole="tbl_Definicion_Opciones" ToRole="tbl_Web_Page" />
+        </EntityType>
+        <EntityContainer Name="GestionProyectosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Definicion_Opciones" EntityType="Self.tbl_Definicion_Opciones" />
+          <EntitySet Name="tbl_Usuarios" EntityType="GestionProyectosModel.tbl_Usuarios" />
+          <EntitySet Name="tbl_Web_Aceesos" EntityType="GestionProyectosModel.tbl_Web_Aceesos" />
+          <EntitySet Name="tbl_Web_Page" EntityType="GestionProyectosModel.tbl_Web_Page" />
+          <AssociationSet Name="FK_tbl_Web_Aceesos_tbl_Definicion_Opciones" Association="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Definicion_Opciones">
+            <End Role="tbl_Definicion_Opciones" EntitySet="tbl_Definicion_Opciones" />
+            <End Role="tbl_Web_Aceesos" EntitySet="tbl_Web_Aceesos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Web_Page_tbl_Definicion_Opciones" Association="GestionProyectosModel.FK_tbl_Web_Page_tbl_Definicion_Opciones">
+            <End Role="tbl_Definicion_Opciones" EntitySet="tbl_Definicion_Opciones" />
+            <End Role="tbl_Web_Page" EntitySet="tbl_Web_Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Web_Aceesos_tbl_Usuarios" Association="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Usuarios">
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+            <End Role="tbl_Web_Aceesos" EntitySet="tbl_Web_Aceesos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Web_Aceesos_tbl_Web_Page" Association="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Web_Page">
+            <End Role="tbl_Web_Page" EntitySet="tbl_Web_Page" />
+            <End Role="tbl_Web_Aceesos" EntitySet="tbl_Web_Aceesos" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Empresa_Usuario" EntityType="GestionProyectosModel.tbl_Empresa_Usuario" />
+          <EntitySet Name="tbl_Empresas" EntityType="GestionProyectosModel.tbl_Empresas" />
+          <EntitySet Name="tbl_Locales" EntityType="GestionProyectosModel.tbl_Locales" />
+          <AssociationSet Name="FK_tbl_Empresa_Usuario_tbl_Empresas" Association="GestionProyectosModel.FK_tbl_Empresa_Usuario_tbl_Empresas">
+            <End Role="tbl_Empresas" EntitySet="tbl_Empresas" />
+            <End Role="tbl_Empresa_Usuario" EntitySet="tbl_Empresa_Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Empresa_Usuario_tbl_Usuarios" Association="GestionProyectosModel.FK_tbl_Empresa_Usuario_tbl_Usuarios">
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+            <End Role="tbl_Empresa_Usuario" EntitySet="tbl_Empresa_Usuario" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Delegacion" EntityType="GestionProyectosModel.tbl_Delegacion" />
+          <EntitySet Name="tbl_Perfil" EntityType="GestionProyectosModel.tbl_Perfil" />
+          <EntitySet Name="tbl_Personal" EntityType="GestionProyectosModel.tbl_Personal" />
+          <EntitySet Name="tbl_Proyecto" EntityType="GestionProyectosModel.tbl_Proyecto" />
+          <EntitySet Name="tbl_Proyecto_Delegacion" EntityType="GestionProyectosModel.tbl_Proyecto_Delegacion" />
+          <EntitySet Name="tbl_Tipo_Cambio" EntityType="GestionProyectosModel.tbl_Tipo_Cambio" />
+          <EntitySet Name="tbl_Tipo_Documento" EntityType="GestionProyectosModel.tbl_Tipo_Documento" />
+          <EntitySet Name="tbl_Alm_Almacenes" EntityType="GestionProyectosModel.tbl_Alm_Almacenes" />
+          <EntitySet Name="tbl_Alm_Materiales" EntityType="GestionProyectosModel.tbl_Alm_Materiales" />
+          <EntitySet Name="tbl_Alm_Materiales_Familia" EntityType="GestionProyectosModel.tbl_Alm_Materiales_Familia" />
+          <EntitySet Name="tbl_Alm_Movimientos_Almacen" EntityType="GestionProyectosModel.tbl_Alm_Movimientos_Almacen" />
+          <EntitySet Name="tbl_Alm_Tipos_Almacen" EntityType="GestionProyectosModel.tbl_Alm_Tipos_Almacen" />
+          <EntitySet Name="tbl_Alm_Unidades_Medida" EntityType="GestionProyectosModel.tbl_Alm_Unidades_Medida" />
+          <EntitySet Name="tbl_Areas" EntityType="GestionProyectosModel.tbl_Areas" />
+          <EntitySet Name="tbl_CuentaCorriente" EntityType="GestionProyectosModel.tbl_CuentaCorriente" />
+          <EntitySet Name="tbl_CuentaCorriente_Servicio" EntityType="GestionProyectosModel.tbl_CuentaCorriente_Servicio" />
+          <EntitySet Name="tbl_Obra_TD" EntityType="GestionProyectosModel.tbl_Obra_TD" />
+          <AssociationSet Name="FK_tbl_Alm_Almacenes_tbl_Alm_Tipos_Almacen" Association="GestionProyectosModel.FK_tbl_Alm_Almacenes_tbl_Alm_Tipos_Almacen">
+            <End Role="tbl_Alm_Tipos_Almacen" EntitySet="tbl_Alm_Tipos_Almacen" />
+            <End Role="tbl_Alm_Almacenes" EntitySet="tbl_Alm_Almacenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Alm_Almacenes_tbl_Locales" Association="GestionProyectosModel.FK_tbl_Alm_Almacenes_tbl_Locales">
+            <End Role="tbl_Locales" EntitySet="tbl_Locales" />
+            <End Role="tbl_Alm_Almacenes" EntitySet="tbl_Alm_Almacenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Alm_Materiales_tbl_Alm_Materiales_Familia" Association="GestionProyectosModel.FK_tbl_Alm_Materiales_tbl_Alm_Materiales_Familia">
+            <End Role="tbl_Alm_Materiales_Familia" EntitySet="tbl_Alm_Materiales_Familia" />
+            <End Role="tbl_Alm_Materiales" EntitySet="tbl_Alm_Materiales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Alm_Materiales_tbl_Alm_Unidades_Medida" Association="GestionProyectosModel.FK_tbl_Alm_Materiales_tbl_Alm_Unidades_Medida">
+            <End Role="tbl_Alm_Unidades_Medida" EntitySet="tbl_Alm_Unidades_Medida" />
+            <End Role="tbl_Alm_Materiales" EntitySet="tbl_Alm_Materiales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_CuentaCorriente_Servicio_tbl_Areas" Association="GestionProyectosModel.FK_tbl_CuentaCorriente_Servicio_tbl_Areas">
+            <End Role="tbl_Areas" EntitySet="tbl_Areas" />
+            <End Role="tbl_CuentaCorriente_Servicio" EntitySet="tbl_CuentaCorriente_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Obra_TD_tbl_Areas" Association="GestionProyectosModel.FK_Tbl_Obra_TD_tbl_Areas">
+            <End Role="tbl_Areas" EntitySet="tbl_Areas" />
+            <End Role="tbl_Obra_TD" EntitySet="tbl_Obra_TD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Usuarios_tbl_Areas" Association="GestionProyectosModel.FK_tbl_Usuarios_tbl_Areas">
+            <End Role="tbl_Areas" EntitySet="tbl_Areas" />
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_CuentaCorriente_Servicio_tbl_CuentaCorriente" Association="GestionProyectosModel.FK_tbl_CuentaCorriente_Servicio_tbl_CuentaCorriente">
+            <End Role="tbl_CuentaCorriente" EntitySet="tbl_CuentaCorriente" />
+            <End Role="tbl_CuentaCorriente_Servicio" EntitySet="tbl_CuentaCorriente_Servicio" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Obra_TD_Empresa" EntityType="GestionProyectosModel.tbl_Obra_TD_Empresa" />
+          <EntitySet Name="tbl_Tipo_TD" EntityType="GestionProyectosModel.tbl_Tipo_TD" />
+          <EntitySet Name="tbl_TipoDocumento" EntityType="GestionProyectosModel.tbl_TipoDocumento" />
+          <AssociationSet Name="FK_Tbl_Obra_TD_tbl_Tipo_TD" Association="GestionProyectosModel.FK_Tbl_Obra_TD_tbl_Tipo_TD">
+            <End Role="tbl_Tipo_TD" EntitySet="tbl_Tipo_TD" />
+            <End Role="tbl_Obra_TD" EntitySet="tbl_Obra_TD" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Cargo_Personal" EntityType="GestionProyectosModel.tbl_Cargo_Personal" />
+          <EntitySet Name="tbl_Cuadrilla_Area" EntityType="GestionProyectosModel.tbl_Cuadrilla_Area" />
+          <EntitySet Name="tbl_Cuadrilla_Colaboradora" EntityType="GestionProyectosModel.tbl_Cuadrilla_Colaboradora" />
+          <EntitySet Name="tbl_Cuadrilla_Delegacion" EntityType="GestionProyectosModel.tbl_Cuadrilla_Delegacion" />
+          <EntitySet Name="tbl_Cuadrilla_Personal" EntityType="GestionProyectosModel.tbl_Cuadrilla_Personal" />
+          <EntitySet Name="tbl_Cuadrillas" EntityType="GestionProyectosModel.tbl_Cuadrillas" />
+          <AssociationSet Name="FK_tbl_Cuadrilla_Area_tbl_Areas" Association="GestionProyectosModel.FK_tbl_Cuadrilla_Area_tbl_Areas">
+            <End Role="tbl_Areas" EntitySet="tbl_Areas" />
+            <End Role="tbl_Cuadrilla_Area" EntitySet="tbl_Cuadrilla_Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Personal_tbl_Cargo_Personal" Association="GestionProyectosModel.FK_tbl_Personal_tbl_Cargo_Personal">
+            <End Role="tbl_Cargo_Personal" EntitySet="tbl_Cargo_Personal" />
+            <End Role="tbl_Personal" EntitySet="tbl_Personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Usuarios_tbl_Cargo_Personal" Association="GestionProyectosModel.FK_tbl_Usuarios_tbl_Cargo_Personal">
+            <End Role="tbl_Cargo_Personal" EntitySet="tbl_Cargo_Personal" />
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Area_tbl_Cuadrillas" Association="GestionProyectosModel.FK_tbl_Cuadrilla_Area_tbl_Cuadrillas">
+            <End Role="tbl_Cuadrillas" EntitySet="tbl_Cuadrillas" />
+            <End Role="tbl_Cuadrilla_Area" EntitySet="tbl_Cuadrilla_Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Colaboradora_tbl_Cuadrillas" Association="GestionProyectosModel.FK_tbl_Cuadrilla_Colaboradora_tbl_Cuadrillas">
+            <End Role="tbl_Cuadrillas" EntitySet="tbl_Cuadrillas" />
+            <End Role="tbl_Cuadrilla_Colaboradora" EntitySet="tbl_Cuadrilla_Colaboradora" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Colaboradora_tbl_CuentaCorriente" Association="GestionProyectosModel.FK_tbl_Cuadrilla_Colaboradora_tbl_CuentaCorriente">
+            <End Role="tbl_CuentaCorriente" EntitySet="tbl_CuentaCorriente" />
+            <End Role="tbl_Cuadrilla_Colaboradora" EntitySet="tbl_Cuadrilla_Colaboradora" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuadrilla" Association="GestionProyectosModel.FK_Cuadrilla">
+            <End Role="tbl_Cuadrillas" EntitySet="tbl_Cuadrillas" />
+            <End Role="tbl_Cuadrilla_Delegacion" EntitySet="tbl_Cuadrilla_Delegacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Delgacion" Association="GestionProyectosModel.FK_Delgacion">
+            <End Role="tbl_Delegacion" EntitySet="tbl_Delegacion" />
+            <End Role="tbl_Cuadrilla_Delegacion" EntitySet="tbl_Cuadrilla_Delegacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Personal_tbl_Cuadrillas" Association="GestionProyectosModel.FK_tbl_Cuadrilla_Personal_tbl_Cuadrillas">
+            <End Role="tbl_Cuadrillas" EntitySet="tbl_Cuadrillas" />
+            <End Role="tbl_Cuadrilla_Personal" EntitySet="tbl_Cuadrilla_Personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Cuadrilla_Personal_tbl_Personal" Association="GestionProyectosModel.FK_tbl_Cuadrilla_Personal_tbl_Personal">
+            <End Role="tbl_Personal" EntitySet="tbl_Personal" />
+            <End Role="tbl_Cuadrilla_Personal" EntitySet="tbl_Cuadrilla_Personal" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbl_Usuarios">
+          <Key>
+            <PropertyRef Name="id_Usuario" />
+          </Key>
+          <Property Name="id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nrodoc_usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos_usuario" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="nombres_usuario" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="email_usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Adm_Usuario" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Sys_Usuario" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="id_Cargo" Type="Int32" Nullable="false" />
+          <Property Name="id_Area" Type="Int32" Nullable="false" />
+          <Property Name="tipo_usuario" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="id_Empresa_Pertenece" Type="Int32" />
+          <Property Name="fotoBase64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fotourl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="login_usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenia_usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_Perfil" Type="Int32" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="Acceso_Movil_Tipo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Web_Aceesos" Relationship="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Usuarios" FromRole="tbl_Usuarios" ToRole="tbl_Web_Aceesos" />
+          <NavigationProperty Name="tbl_Empresa_Usuario" Relationship="GestionProyectosModel.FK_tbl_Empresa_Usuario_tbl_Usuarios" FromRole="tbl_Usuarios" ToRole="tbl_Empresa_Usuario" />
+          <NavigationProperty Name="tbl_Areas" Relationship="GestionProyectosModel.FK_tbl_Usuarios_tbl_Areas" FromRole="tbl_Usuarios" ToRole="tbl_Areas" />
+          <NavigationProperty Name="tbl_Cargo_Personal" Relationship="GestionProyectosModel.FK_tbl_Usuarios_tbl_Cargo_Personal" FromRole="tbl_Usuarios" ToRole="tbl_Cargo_Personal" />
+        </EntityType>
+        <EntityType Name="tbl_Web_Aceesos">
+          <Key>
+            <PropertyRef Name="id_Acceso" />
+          </Key>
+          <Property Name="id_Acceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Usuario" Type="Int32" />
+          <Property Name="id_Opcion" Type="Int32" />
+          <Property Name="id_WebPage" Type="Int32" />
+          <Property Name="id_WebEvento" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Definicion_Opciones" Relationship="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Definicion_Opciones" FromRole="tbl_Web_Aceesos" ToRole="tbl_Definicion_Opciones" />
+          <NavigationProperty Name="tbl_Usuarios" Relationship="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Usuarios" FromRole="tbl_Web_Aceesos" ToRole="tbl_Usuarios" />
+          <NavigationProperty Name="tbl_Web_Page" Relationship="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Web_Page" FromRole="tbl_Web_Aceesos" ToRole="tbl_Web_Page" />
+        </EntityType>
+        <EntityType Name="tbl_Web_Page">
+          <Key>
+            <PropertyRef Name="id_WebPage" />
+          </Key>
+          <Property Name="id_WebPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Opcion" Type="Int32" Nullable="false" />
+          <Property Name="nombre_webpage" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="url_webpage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Definicion_Opciones" Relationship="GestionProyectosModel.FK_tbl_Web_Page_tbl_Definicion_Opciones" FromRole="tbl_Web_Page" ToRole="tbl_Definicion_Opciones" />
+          <NavigationProperty Name="tbl_Web_Aceesos" Relationship="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Web_Page" FromRole="tbl_Web_Page" ToRole="tbl_Web_Aceesos" />
+        </EntityType>
+        <Association Name="FK_tbl_Web_Aceesos_tbl_Definicion_Opciones">
+          <End Type="GestionProyectosModel.tbl_Definicion_Opciones" Role="tbl_Definicion_Opciones" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Web_Aceesos" Role="tbl_Web_Aceesos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Definicion_Opciones">
+              <PropertyRef Name="id_Opcion" />
+            </Principal>
+            <Dependent Role="tbl_Web_Aceesos">
+              <PropertyRef Name="id_Opcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Web_Page_tbl_Definicion_Opciones">
+          <End Type="GestionProyectosModel.tbl_Definicion_Opciones" Role="tbl_Definicion_Opciones" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Web_Page" Role="tbl_Web_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Definicion_Opciones">
+              <PropertyRef Name="id_Opcion" />
+            </Principal>
+            <Dependent Role="tbl_Web_Page">
+              <PropertyRef Name="id_Opcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Web_Aceesos_tbl_Usuarios">
+          <End Type="GestionProyectosModel.tbl_Usuarios" Role="tbl_Usuarios" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Web_Aceesos" Role="tbl_Web_Aceesos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Usuarios">
+              <PropertyRef Name="id_Usuario" />
+            </Principal>
+            <Dependent Role="tbl_Web_Aceesos">
+              <PropertyRef Name="id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Web_Aceesos_tbl_Web_Page">
+          <End Type="GestionProyectosModel.tbl_Web_Page" Role="tbl_Web_Page" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Web_Aceesos" Role="tbl_Web_Aceesos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Web_Page">
+              <PropertyRef Name="id_WebPage" />
+            </Principal>
+            <Dependent Role="tbl_Web_Aceesos">
+              <PropertyRef Name="id_WebPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_Empresa_Usuario">
+          <Key>
+            <PropertyRef Name="id_Empresa_Usuario" />
+          </Key>
+          <Property Name="id_Empresa_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="id_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Empresas" Relationship="GestionProyectosModel.FK_tbl_Empresa_Usuario_tbl_Empresas" FromRole="tbl_Empresa_Usuario" ToRole="tbl_Empresas" />
+          <NavigationProperty Name="tbl_Usuarios" Relationship="GestionProyectosModel.FK_tbl_Empresa_Usuario_tbl_Usuarios" FromRole="tbl_Empresa_Usuario" ToRole="tbl_Usuarios" />
+        </EntityType>
+        <EntityType Name="tbl_Empresas">
+          <Key>
+            <PropertyRef Name="id_Empresa" />
+          </Key>
+          <Property Name="id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="codigo_interno_empresa" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ruc_empresa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="razonsocial_empresa" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="actividad_empresa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ciiu_empresa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_empresa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="representante_empresa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono1_empresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telefono2_empresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email_empresa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Empresa_Usuario" Relationship="GestionProyectosModel.FK_tbl_Empresa_Usuario_tbl_Empresas" FromRole="tbl_Empresas" ToRole="tbl_Empresa_Usuario" />
+        </EntityType>
+        <EntityType Name="tbl_Locales">
+          <Key>
+            <PropertyRef Name="Id_Local" />
+          </Key>
+          <Property Name="Id_Local" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Empresa" Type="Int32" />
+          <Property Name="nombre_local" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_local" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Ubicacion" Type="Int32" />
+          <Property Name="orden_local" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Alm_Almacenes" Relationship="GestionProyectosModel.FK_tbl_Alm_Almacenes_tbl_Locales" FromRole="tbl_Locales" ToRole="tbl_Alm_Almacenes" />
+        </EntityType>
+        <Association Name="FK_tbl_Empresa_Usuario_tbl_Empresas">
+          <End Type="GestionProyectosModel.tbl_Empresas" Role="tbl_Empresas" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Empresa_Usuario" Role="tbl_Empresa_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Empresas">
+              <PropertyRef Name="id_Empresa" />
+            </Principal>
+            <Dependent Role="tbl_Empresa_Usuario">
+              <PropertyRef Name="id_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Empresa_Usuario_tbl_Usuarios">
+          <End Type="GestionProyectosModel.tbl_Usuarios" Role="tbl_Usuarios" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Empresa_Usuario" Role="tbl_Empresa_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Usuarios">
+              <PropertyRef Name="id_Usuario" />
+            </Principal>
+            <Dependent Role="tbl_Empresa_Usuario">
+              <PropertyRef Name="id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_Delegacion">
+          <Key>
+            <PropertyRef Name="id_Delegacion" />
+          </Key>
+          <Property Name="id_Delegacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="codigo_delegacion" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_delegacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Cuadrilla_Delegacion" Relationship="GestionProyectosModel.FK_Delgacion" FromRole="tbl_Delegacion" ToRole="tbl_Cuadrilla_Delegacion" />
+        </EntityType>
+        <EntityType Name="tbl_Perfil">
+          <Key>
+            <PropertyRef Name="id_Perfil" />
+          </Key>
+          <Property Name="id_Perfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="nombre_perfil" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_perfil" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="icono_perfil" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Personal">
+          <Key>
+            <PropertyRef Name="id_Personal" />
+          </Key>
+          <Property Name="id_Personal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nroDoc_Personal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tipoDoc_Personal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos_Personal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="nombres_Personal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_Personal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_Personal" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="costoMo_Personal" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="fechaIngreso_Personal" Type="DateTime" Precision="3" />
+          <Property Name="id_Cargo" Type="Int32" />
+          <Property Name="tipoPersonal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="fechaCese_Personal" Type="DateTime" Precision="3" />
+          <Property Name="retiraMate_Personal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="retiraEquipamiento_Personal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="fotoBase64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_Empresa" Type="Int32" />
+          <Property Name="id_Delegacion" Type="Int32" />
+          <Property Name="id_Proyecto" Type="Int32" />
+          <NavigationProperty Name="tbl_Cargo_Personal" Relationship="GestionProyectosModel.FK_tbl_Personal_tbl_Cargo_Personal" FromRole="tbl_Personal" ToRole="tbl_Cargo_Personal" />
+          <NavigationProperty Name="tbl_Cuadrilla_Personal" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Personal_tbl_Personal" FromRole="tbl_Personal" ToRole="tbl_Cuadrilla_Personal" />
+        </EntityType>
+        <EntityType Name="tbl_Proyecto">
+          <Key>
+            <PropertyRef Name="id_Proyecto" />
+          </Key>
+          <Property Name="id_Proyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Delegacio" Type="Int32" Nullable="false" />
+          <Property Name="id_Empreasa" Type="Int32" Nullable="false" />
+          <Property Name="nombre_proyecto" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Proyecto_Delegacion">
+          <Key>
+            <PropertyRef Name="id_proyecto_delegacion" />
+          </Key>
+          <Property Name="id_proyecto_delegacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_baremo" Type="Int32" />
+          <Property Name="id_empresa" Type="Int32" />
+          <Property Name="id_delegacion" Type="Int32" />
+          <Property Name="id_proyecto" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Tipo_Cambio">
+          <Key>
+            <PropertyRef Name="id_TipoCambio" />
+          </Key>
+          <Property Name="id_TipoCambio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Moneda" Type="Int32" Nullable="false" />
+          <Property Name="fecha_TipoCambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_Moneda_Cambio" Type="Int32" Nullable="false" />
+          <Property Name="compra_TipoCambio" Type="Decimal" Nullable="false" Precision="28" Scale="6" />
+          <Property Name="venta_TipoCambio" Type="Decimal" Nullable="false" Precision="28" Scale="6" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Tipo_Documento">
+          <Key>
+            <PropertyRef Name="Id_TipoDocumento" />
+          </Key>
+          <Property Name="Id_TipoDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion_TipoDocumento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura_TipoDocumento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_Sunat" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Almacenes">
+          <Key>
+            <PropertyRef Name="id_Almacen" />
+          </Key>
+          <Property Name="id_Almacen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="id_Local" Type="Int32" Nullable="false" />
+          <Property Name="id_Delegacion" Type="Int32" Nullable="false" />
+          <Property Name="id_TipoAlmacen" Type="Int32" Nullable="false" />
+          <Property Name="descripcion_Almacen" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_Almacen" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MatNormall_Almacen" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MatUsado_Almacen" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MatBaja_Almacen" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="stock_DetalleGuia" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Stock_multiOtContable" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="stock_OtGeneral" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Stock_EmpresObra" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Stock_EmpresPersonal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Anterior_Almacen" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="MatCustodia_almacen" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="id_Proyecto" Type="Int32" />
+          <NavigationProperty Name="tbl_Alm_Tipos_Almacen" Relationship="GestionProyectosModel.FK_tbl_Alm_Almacenes_tbl_Alm_Tipos_Almacen" FromRole="tbl_Alm_Almacenes" ToRole="tbl_Alm_Tipos_Almacen" />
+          <NavigationProperty Name="tbl_Locales" Relationship="GestionProyectosModel.FK_tbl_Alm_Almacenes_tbl_Locales" FromRole="tbl_Alm_Almacenes" ToRole="tbl_Locales" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Materiales">
+          <Key>
+            <PropertyRef Name="id_Material" />
+          </Key>
+          <Property Name="id_Material" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_Interno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_Navision" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_Material" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura_Material" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_UnidadMedida" Type="Int32" />
+          <Property Name="id_FamiliaMaterial" Type="Int32" />
+          <Property Name="tiempoVida_Material" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="stockMinimo_Material" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="precioCosto_Material" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="precioPromedio_Material" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="ultimoPrecio_Material" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="exige_Medido" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="exige_FechaVence" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="exige_Kardex" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="exige_NroSerie" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="exige_Bobina" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="exige_CableParticionado" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="esFactura" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="esMenudo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Anterior_Material" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="Codigo_Cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="esValorizable" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Alm_Materiales_Familia" Relationship="GestionProyectosModel.FK_tbl_Alm_Materiales_tbl_Alm_Materiales_Familia" FromRole="tbl_Alm_Materiales" ToRole="tbl_Alm_Materiales_Familia" />
+          <NavigationProperty Name="tbl_Alm_Unidades_Medida" Relationship="GestionProyectosModel.FK_tbl_Alm_Materiales_tbl_Alm_Unidades_Medida" FromRole="tbl_Alm_Materiales" ToRole="tbl_Alm_Unidades_Medida" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Materiales_Familia">
+          <Key>
+            <PropertyRef Name="id_FamiliaMaterial" />
+          </Key>
+          <Property Name="id_FamiliaMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_FamiliaMaterial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura_FamiliaMaterial" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Anterior_Familia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="HojaRora" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="RetiroMaterial" Type="Int32" />
+          <NavigationProperty Name="tbl_Alm_Materiales" Relationship="GestionProyectosModel.FK_tbl_Alm_Materiales_tbl_Alm_Materiales_Familia" FromRole="tbl_Alm_Materiales_Familia" ToRole="tbl_Alm_Materiales" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Movimientos_Almacen">
+          <Key>
+            <PropertyRef Name="id_MovAlmacen" />
+          </Key>
+          <Property Name="id_MovAlmacen" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="descripcion_MovAlmacen" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura_MovAlmacen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_MovAlmacen" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="codigo_Sunat" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="afectaStock_MovAlmacen" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="noAfectaStock_MovAlmacen" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Anterior_Movimiento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Tipos_Almacen">
+          <Key>
+            <PropertyRef Name="id_TipoAlmacen" />
+          </Key>
+          <Property Name="id_TipoAlmacen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_TipoAlmacen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Alm_Almacenes" Relationship="GestionProyectosModel.FK_tbl_Alm_Almacenes_tbl_Alm_Tipos_Almacen" FromRole="tbl_Alm_Tipos_Almacen" ToRole="tbl_Alm_Almacenes" />
+        </EntityType>
+        <EntityType Name="tbl_Alm_Unidades_Medida">
+          <Key>
+            <PropertyRef Name="id_UnidadMedida" />
+          </Key>
+          <Property Name="id_UnidadMedida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_UnidadMedida" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura_UnidadMedida" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_Sunat" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Anterior_UM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Alm_Materiales" Relationship="GestionProyectosModel.FK_tbl_Alm_Materiales_tbl_Alm_Unidades_Medida" FromRole="tbl_Alm_Unidades_Medida" ToRole="tbl_Alm_Materiales" />
+        </EntityType>
+        <EntityType Name="tbl_Areas">
+          <Key>
+            <PropertyRef Name="id_Area" />
+          </Key>
+          <Property Name="id_Area" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_area" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoEdelnor" Type="Int32" />
+          <Property Name="proceso_area" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="tipoServicio" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_CuentaCorriente_Servicio" Relationship="GestionProyectosModel.FK_tbl_CuentaCorriente_Servicio_tbl_Areas" FromRole="tbl_Areas" ToRole="tbl_CuentaCorriente_Servicio" />
+          <NavigationProperty Name="tbl_Obra_TD" Relationship="GestionProyectosModel.FK_Tbl_Obra_TD_tbl_Areas" FromRole="tbl_Areas" ToRole="tbl_Obra_TD" />
+          <NavigationProperty Name="tbl_Usuarios" Relationship="GestionProyectosModel.FK_tbl_Usuarios_tbl_Areas" FromRole="tbl_Areas" ToRole="tbl_Usuarios" />
+          <NavigationProperty Name="tbl_Cuadrilla_Area" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Area_tbl_Areas" FromRole="tbl_Areas" ToRole="tbl_Cuadrilla_Area" />
+        </EntityType>
+        <EntityType Name="tbl_CuentaCorriente">
+          <Key>
+            <PropertyRef Name="id_CtaCte" />
+          </Key>
+          <Property Name="id_CtaCte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nroRUC_CtaCte" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tipoPersona_CtaCte" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="razonSocial_CtaCte" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_CtaCte" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="telefono1_CtaCte" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telefono2_CtaCte" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="paginaWeb_CtaCte" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contacto_CtaCte" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email_CtaCte" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="proveedor_CtaCte" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="cliente_CtaCte" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="transportista" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="colaborador_CtaCte" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="salidaMat_CtaCte" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="devolucionMat_CtaCte" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="transferenciaOrigen_CtaCte" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="transferenciaDestino_CtaCte" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_CuentaCorriente_Servicio" Relationship="GestionProyectosModel.FK_tbl_CuentaCorriente_Servicio_tbl_CuentaCorriente" FromRole="tbl_CuentaCorriente" ToRole="tbl_CuentaCorriente_Servicio" />
+          <NavigationProperty Name="tbl_Cuadrilla_Colaboradora" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Colaboradora_tbl_CuentaCorriente" FromRole="tbl_CuentaCorriente" ToRole="tbl_Cuadrilla_Colaboradora" />
+        </EntityType>
+        <EntityType Name="tbl_CuentaCorriente_Servicio">
+          <Key>
+            <PropertyRef Name="id_CtaCte_Servicio" />
+          </Key>
+          <Property Name="id_CtaCte_Servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_CtaCte" Type="Int32" Nullable="false" />
+          <Property Name="id_Area" Type="Int32" Nullable="false" />
+          <Property Name="prioridad_CtaCte_Servicio" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Areas" Relationship="GestionProyectosModel.FK_tbl_CuentaCorriente_Servicio_tbl_Areas" FromRole="tbl_CuentaCorriente_Servicio" ToRole="tbl_Areas" />
+          <NavigationProperty Name="tbl_CuentaCorriente" Relationship="GestionProyectosModel.FK_tbl_CuentaCorriente_Servicio_tbl_CuentaCorriente" FromRole="tbl_CuentaCorriente_Servicio" ToRole="tbl_CuentaCorriente" />
+        </EntityType>
+        <EntityType Name="tbl_Obra_TD">
+          <Key>
+            <PropertyRef Name="id_TD" />
+          </Key>
+          <Property Name="id_TD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_TipoTD" Type="Int32" />
+          <Property Name="Codigo_TD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_EstaCliente" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_TD" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="id_Area" Type="Int32" />
+          <Property Name="direccion_TD" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRecepcion_TD" Type="DateTime" Precision="3" />
+          <Property Name="fechaInicio_TD" Type="DateTime" Precision="3" />
+          <Property Name="fechaTermino_TD" Type="DateTime" Precision="3" />
+          <Property Name="id_Cliente_TD" Type="Int32" />
+          <Property Name="id_Colaborador_TD" Type="Int32" />
+          <Property Name="id_Ubigeo" Type="Int32" />
+          <Property Name="salidaMat_TD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="devolucionMat_TD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="transferenciaOrigen_TD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="transferenciaDestino_TD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="id_contrato" Type="Int32" />
+          <Property Name="numero_contrato" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_inspectorCliente" Type="Int32" />
+          <Property Name="fecPtaServicio_TD" Type="DateTime" Precision="3" />
+          <Property Name="fecVencimiento_TD" Type="DateTime" Precision="3" />
+          <Property Name="nroPrevisto_TD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecIniPrevisto_TD" Type="DateTime" Precision="3" />
+          <Property Name="fecFinPrevisto_TD" Type="DateTime" Precision="3" />
+          <Property Name="nroProyecto_TD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_distrito" Type="Int32" />
+          <Property Name="id_zona" Type="Int32" />
+          <Property Name="set_TD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="alimentador_TD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="subEstacion_TD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipoClase_TD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="maniobra_TD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="cecoTD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="factor_contrato" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="id_Empresa" Type="Int32" />
+          <Property Name="id_Delegacion" Type="Int32" />
+          <Property Name="id_Proyecto" Type="Int32" />
+          <Property Name="Estado_OT_TD" Type="Int32" />
+          <NavigationProperty Name="tbl_Areas" Relationship="GestionProyectosModel.FK_Tbl_Obra_TD_tbl_Areas" FromRole="tbl_Obra_TD" ToRole="tbl_Areas" />
+          <NavigationProperty Name="tbl_Tipo_TD" Relationship="GestionProyectosModel.FK_Tbl_Obra_TD_tbl_Tipo_TD" FromRole="tbl_Obra_TD" ToRole="tbl_Tipo_TD" />
+        </EntityType>
+        <Association Name="FK_tbl_Alm_Almacenes_tbl_Alm_Tipos_Almacen">
+          <End Type="GestionProyectosModel.tbl_Alm_Tipos_Almacen" Role="tbl_Alm_Tipos_Almacen" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Alm_Almacenes" Role="tbl_Alm_Almacenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Alm_Tipos_Almacen">
+              <PropertyRef Name="id_TipoAlmacen" />
+            </Principal>
+            <Dependent Role="tbl_Alm_Almacenes">
+              <PropertyRef Name="id_TipoAlmacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Alm_Almacenes_tbl_Locales">
+          <End Type="GestionProyectosModel.tbl_Locales" Role="tbl_Locales" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Alm_Almacenes" Role="tbl_Alm_Almacenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Locales">
+              <PropertyRef Name="Id_Local" />
+            </Principal>
+            <Dependent Role="tbl_Alm_Almacenes">
+              <PropertyRef Name="id_Local" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Alm_Materiales_tbl_Alm_Materiales_Familia">
+          <End Type="GestionProyectosModel.tbl_Alm_Materiales_Familia" Role="tbl_Alm_Materiales_Familia" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Alm_Materiales" Role="tbl_Alm_Materiales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Alm_Materiales_Familia">
+              <PropertyRef Name="id_FamiliaMaterial" />
+            </Principal>
+            <Dependent Role="tbl_Alm_Materiales">
+              <PropertyRef Name="id_FamiliaMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Alm_Materiales_tbl_Alm_Unidades_Medida">
+          <End Type="GestionProyectosModel.tbl_Alm_Unidades_Medida" Role="tbl_Alm_Unidades_Medida" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Alm_Materiales" Role="tbl_Alm_Materiales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Alm_Unidades_Medida">
+              <PropertyRef Name="id_UnidadMedida" />
+            </Principal>
+            <Dependent Role="tbl_Alm_Materiales">
+              <PropertyRef Name="id_UnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_CuentaCorriente_Servicio_tbl_Areas">
+          <End Type="GestionProyectosModel.tbl_Areas" Role="tbl_Areas" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_CuentaCorriente_Servicio" Role="tbl_CuentaCorriente_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Areas">
+              <PropertyRef Name="id_Area" />
+            </Principal>
+            <Dependent Role="tbl_CuentaCorriente_Servicio">
+              <PropertyRef Name="id_Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Obra_TD_tbl_Areas">
+          <End Type="GestionProyectosModel.tbl_Areas" Role="tbl_Areas" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Obra_TD" Role="tbl_Obra_TD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Areas">
+              <PropertyRef Name="id_Area" />
+            </Principal>
+            <Dependent Role="tbl_Obra_TD">
+              <PropertyRef Name="id_Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Usuarios_tbl_Areas">
+          <End Type="GestionProyectosModel.tbl_Areas" Role="tbl_Areas" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Usuarios" Role="tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Areas">
+              <PropertyRef Name="id_Area" />
+            </Principal>
+            <Dependent Role="tbl_Usuarios">
+              <PropertyRef Name="id_Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_CuentaCorriente_Servicio_tbl_CuentaCorriente">
+          <End Type="GestionProyectosModel.tbl_CuentaCorriente" Role="tbl_CuentaCorriente" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_CuentaCorriente_Servicio" Role="tbl_CuentaCorriente_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CuentaCorriente">
+              <PropertyRef Name="id_CtaCte" />
+            </Principal>
+            <Dependent Role="tbl_CuentaCorriente_Servicio">
+              <PropertyRef Name="id_CtaCte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_Obra_TD_Empresa">
+          <Key>
+            <PropertyRef Name="id_ObraTD_Empresa" />
+          </Key>
+          <Property Name="id_ObraTD_Empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_TD" Type="Int32" Nullable="false" />
+          <Property Name="id_Colaborador_TD" Type="Int32" Nullable="false" />
+          <Property Name="prioridad_TD" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Tipo_TD">
+          <Key>
+            <PropertyRef Name="id_TipoObra" />
+          </Key>
+          <Property Name="id_TipoObra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="abreviatura_TipoObra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_TipoObra" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="codAnt_TipoObra" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Obra_TD" Relationship="GestionProyectosModel.FK_Tbl_Obra_TD_tbl_Tipo_TD" FromRole="tbl_Tipo_TD" ToRole="tbl_Obra_TD" />
+        </EntityType>
+        <EntityType Name="tbl_TipoDocumento">
+          <Key>
+            <PropertyRef Name="id_TipoDocumento" />
+          </Key>
+          <Property Name="id_TipoDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion_Vehiculo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Tbl_Obra_TD_tbl_Tipo_TD">
+          <End Type="GestionProyectosModel.tbl_Tipo_TD" Role="tbl_Tipo_TD" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Obra_TD" Role="tbl_Obra_TD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Tipo_TD">
+              <PropertyRef Name="id_TipoObra" />
+            </Principal>
+            <Dependent Role="tbl_Obra_TD">
+              <PropertyRef Name="id_TipoTD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_Cargo_Personal">
+          <Key>
+            <PropertyRef Name="id_Cargo" />
+          </Key>
+          <Property Name="id_Cargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_cargo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="co_pues_trab" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Personal" Relationship="GestionProyectosModel.FK_tbl_Personal_tbl_Cargo_Personal" FromRole="tbl_Cargo_Personal" ToRole="tbl_Personal" />
+          <NavigationProperty Name="tbl_Usuarios" Relationship="GestionProyectosModel.FK_tbl_Usuarios_tbl_Cargo_Personal" FromRole="tbl_Cargo_Personal" ToRole="tbl_Usuarios" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrilla_Area">
+          <Key>
+            <PropertyRef Name="id_Cuadrilla_Area" />
+          </Key>
+          <Property Name="id_Cuadrilla_Area" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Cuadrilla" Type="Int32" Nullable="false" />
+          <Property Name="id_Area" Type="Int32" Nullable="false" />
+          <Property Name="Prioridad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Areas" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Area_tbl_Areas" FromRole="tbl_Cuadrilla_Area" ToRole="tbl_Areas" />
+          <NavigationProperty Name="tbl_Cuadrillas" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Area_tbl_Cuadrillas" FromRole="tbl_Cuadrilla_Area" ToRole="tbl_Cuadrillas" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrilla_Colaboradora">
+          <Key>
+            <PropertyRef Name="id_CuadrillaColaborador" />
+          </Key>
+          <Property Name="id_CuadrillaColaborador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Cuadrilla" Type="Int32" Nullable="false" />
+          <Property Name="id_CtaCte_Colaborador" Type="Int32" Nullable="false" />
+          <Property Name="Prioridad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Cuadrillas" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Colaboradora_tbl_Cuadrillas" FromRole="tbl_Cuadrilla_Colaboradora" ToRole="tbl_Cuadrillas" />
+          <NavigationProperty Name="tbl_CuentaCorriente" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Colaboradora_tbl_CuentaCorriente" FromRole="tbl_Cuadrilla_Colaboradora" ToRole="tbl_CuentaCorriente" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrilla_Delegacion">
+          <Key>
+            <PropertyRef Name="id_Cuadrilla_Delegacion" />
+          </Key>
+          <Property Name="id_Cuadrilla_Delegacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Delegacion" Type="Int32" />
+          <Property Name="id_Cuadrilla" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Cuadrillas" Relationship="GestionProyectosModel.FK_Cuadrilla" FromRole="tbl_Cuadrilla_Delegacion" ToRole="tbl_Cuadrillas" />
+          <NavigationProperty Name="tbl_Delegacion" Relationship="GestionProyectosModel.FK_Delgacion" FromRole="tbl_Cuadrilla_Delegacion" ToRole="tbl_Delegacion" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrilla_Personal">
+          <Key>
+            <PropertyRef Name="id_Cuadrilla_Personal" />
+          </Key>
+          <Property Name="id_Cuadrilla_Personal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Cuadrilla" Type="Int32" Nullable="false" />
+          <Property Name="id_Personal" Type="Int32" Nullable="false" />
+          <Property Name="Prioridad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Cuadrillas" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Personal_tbl_Cuadrillas" FromRole="tbl_Cuadrilla_Personal" ToRole="tbl_Cuadrillas" />
+          <NavigationProperty Name="tbl_Personal" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Personal_tbl_Personal" FromRole="tbl_Cuadrilla_Personal" ToRole="tbl_Personal" />
+        </EntityType>
+        <EntityType Name="tbl_Cuadrillas">
+          <Key>
+            <PropertyRef Name="id_Cuadrilla" />
+          </Key>
+          <Property Name="id_Cuadrilla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Empresa" Type="Int32" />
+          <Property Name="codigo_Cuadrilla" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_Cuadrilla" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_Cuadrilla" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="id_colaborador" Type="Int32" />
+          <Property Name="id_Local" Type="Int32" />
+          <Property Name="salidaMat_Cuadrilla" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="instalacionMat_Cuadrilla" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Anterior_Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="id_Delegacion" Type="Int32" />
+          <Property Name="id_Proyecto" Type="Int32" />
+          <Property Name="id_vehiculo" Type="Int32" />
+          <Property Name="nro_placa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Cuadrilla_Area" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Area_tbl_Cuadrillas" FromRole="tbl_Cuadrillas" ToRole="tbl_Cuadrilla_Area" />
+          <NavigationProperty Name="tbl_Cuadrilla_Colaboradora" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Colaboradora_tbl_Cuadrillas" FromRole="tbl_Cuadrillas" ToRole="tbl_Cuadrilla_Colaboradora" />
+          <NavigationProperty Name="tbl_Cuadrilla_Delegacion" Relationship="GestionProyectosModel.FK_Cuadrilla" FromRole="tbl_Cuadrillas" ToRole="tbl_Cuadrilla_Delegacion" />
+          <NavigationProperty Name="tbl_Cuadrilla_Personal" Relationship="GestionProyectosModel.FK_tbl_Cuadrilla_Personal_tbl_Cuadrillas" FromRole="tbl_Cuadrillas" ToRole="tbl_Cuadrilla_Personal" />
+        </EntityType>
+        <Association Name="FK_tbl_Cuadrilla_Area_tbl_Areas">
+          <End Type="GestionProyectosModel.tbl_Areas" Role="tbl_Areas" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Cuadrilla_Area" Role="tbl_Cuadrilla_Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Areas">
+              <PropertyRef Name="id_Area" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Area">
+              <PropertyRef Name="id_Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Personal_tbl_Cargo_Personal">
+          <End Type="GestionProyectosModel.tbl_Cargo_Personal" Role="tbl_Cargo_Personal" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Personal" Role="tbl_Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cargo_Personal">
+              <PropertyRef Name="id_Cargo" />
+            </Principal>
+            <Dependent Role="tbl_Personal">
+              <PropertyRef Name="id_Cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Usuarios_tbl_Cargo_Personal">
+          <End Type="GestionProyectosModel.tbl_Cargo_Personal" Role="tbl_Cargo_Personal" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Usuarios" Role="tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cargo_Personal">
+              <PropertyRef Name="id_Cargo" />
+            </Principal>
+            <Dependent Role="tbl_Usuarios">
+              <PropertyRef Name="id_Cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Area_tbl_Cuadrillas">
+          <End Type="GestionProyectosModel.tbl_Cuadrillas" Role="tbl_Cuadrillas" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Cuadrilla_Area" Role="tbl_Cuadrilla_Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cuadrillas">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Area">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Colaboradora_tbl_Cuadrillas">
+          <End Type="GestionProyectosModel.tbl_Cuadrillas" Role="tbl_Cuadrillas" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Cuadrilla_Colaboradora" Role="tbl_Cuadrilla_Colaboradora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cuadrillas">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Colaboradora">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Colaboradora_tbl_CuentaCorriente">
+          <End Type="GestionProyectosModel.tbl_CuentaCorriente" Role="tbl_CuentaCorriente" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Cuadrilla_Colaboradora" Role="tbl_Cuadrilla_Colaboradora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CuentaCorriente">
+              <PropertyRef Name="id_CtaCte" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Colaboradora">
+              <PropertyRef Name="id_CtaCte_Colaborador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuadrilla">
+          <End Type="GestionProyectosModel.tbl_Cuadrillas" Role="tbl_Cuadrillas" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Cuadrilla_Delegacion" Role="tbl_Cuadrilla_Delegacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cuadrillas">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Delegacion">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Delgacion">
+          <End Type="GestionProyectosModel.tbl_Delegacion" Role="tbl_Delegacion" Multiplicity="0..1" />
+          <End Type="GestionProyectosModel.tbl_Cuadrilla_Delegacion" Role="tbl_Cuadrilla_Delegacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Delegacion">
+              <PropertyRef Name="id_Delegacion" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Delegacion">
+              <PropertyRef Name="id_Delegacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Personal_tbl_Cuadrillas">
+          <End Type="GestionProyectosModel.tbl_Cuadrillas" Role="tbl_Cuadrillas" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Cuadrilla_Personal" Role="tbl_Cuadrilla_Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cuadrillas">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Personal">
+              <PropertyRef Name="id_Cuadrilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Cuadrilla_Personal_tbl_Personal">
+          <End Type="GestionProyectosModel.tbl_Personal" Role="tbl_Personal" Multiplicity="1" />
+          <End Type="GestionProyectosModel.tbl_Cuadrilla_Personal" Role="tbl_Cuadrilla_Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Personal">
+              <PropertyRef Name="id_Personal" />
+            </Principal>
+            <Dependent Role="tbl_Cuadrilla_Personal">
+              <PropertyRef Name="id_Personal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionProyectosModelStoreContainer" CdmEntityContainer="GestionProyectosEntities">
+          <EntitySetMapping Name="tbl_Definicion_Opciones">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Definicion_Opciones">
+              <MappingFragment StoreEntitySet="tbl_Definicion_Opciones">
+                <ScalarProperty Name="id_Opcion" ColumnName="id_Opcion" />
+                <ScalarProperty Name="nombre_opcion" ColumnName="nombre_opcion" />
+                <ScalarProperty Name="url_opcion" ColumnName="url_opcion" />
+                <ScalarProperty Name="parentID" ColumnName="parentID" />
+                <ScalarProperty Name="nombreParentID" ColumnName="nombreParentID" />
+                <ScalarProperty Name="urlImagen_Opcion" ColumnName="urlImagen_Opcion" />
+                <ScalarProperty Name="orden_Opcion" ColumnName="orden_Opcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Usuarios">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Usuarios">
+              <MappingFragment StoreEntitySet="tbl_Usuarios">
+                <ScalarProperty Name="Acceso_Movil_Tipo" ColumnName="Acceso_Movil_Tipo" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_Perfil" ColumnName="id_Perfil" />
+                <ScalarProperty Name="contrasenia_usuario" ColumnName="contrasenia_usuario" />
+                <ScalarProperty Name="login_usuario" ColumnName="login_usuario" />
+                <ScalarProperty Name="fotourl" ColumnName="fotourl" />
+                <ScalarProperty Name="fotoBase64" ColumnName="fotoBase64" />
+                <ScalarProperty Name="id_Empresa_Pertenece" ColumnName="id_Empresa_Pertenece" />
+                <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
+                <ScalarProperty Name="id_Area" ColumnName="id_Area" />
+                <ScalarProperty Name="id_Cargo" ColumnName="id_Cargo" />
+                <ScalarProperty Name="Sys_Usuario" ColumnName="Sys_Usuario" />
+                <ScalarProperty Name="Adm_Usuario" ColumnName="Adm_Usuario" />
+                <ScalarProperty Name="email_usuario" ColumnName="email_usuario" />
+                <ScalarProperty Name="nombres_usuario" ColumnName="nombres_usuario" />
+                <ScalarProperty Name="apellidos_usuario" ColumnName="apellidos_usuario" />
+                <ScalarProperty Name="nrodoc_usuario" ColumnName="nrodoc_usuario" />
+                <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Web_Aceesos">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Web_Aceesos">
+              <MappingFragment StoreEntitySet="tbl_Web_Aceesos">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_WebEvento" ColumnName="id_WebEvento" />
+                <ScalarProperty Name="id_WebPage" ColumnName="id_WebPage" />
+                <ScalarProperty Name="id_Opcion" ColumnName="id_Opcion" />
+                <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
+                <ScalarProperty Name="id_Acceso" ColumnName="id_Acceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Web_Page">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Web_Page">
+              <MappingFragment StoreEntitySet="tbl_Web_Page">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="url_webpage" ColumnName="url_webpage" />
+                <ScalarProperty Name="nombre_webpage" ColumnName="nombre_webpage" />
+                <ScalarProperty Name="id_Opcion" ColumnName="id_Opcion" />
+                <ScalarProperty Name="id_WebPage" ColumnName="id_WebPage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Empresa_Usuario">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Empresa_Usuario">
+              <MappingFragment StoreEntitySet="tbl_Empresa_Usuario">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
+                <ScalarProperty Name="id_Empresa" ColumnName="id_Empresa" />
+                <ScalarProperty Name="id_Empresa_Usuario" ColumnName="id_Empresa_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Empresas">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Empresas">
+              <MappingFragment StoreEntitySet="tbl_Empresas">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="email_empresa" ColumnName="email_empresa" />
+                <ScalarProperty Name="telefono2_empresa" ColumnName="telefono2_empresa" />
+                <ScalarProperty Name="telefono1_empresa" ColumnName="telefono1_empresa" />
+                <ScalarProperty Name="representante_empresa" ColumnName="representante_empresa" />
+                <ScalarProperty Name="direccion_empresa" ColumnName="direccion_empresa" />
+                <ScalarProperty Name="ciiu_empresa" ColumnName="ciiu_empresa" />
+                <ScalarProperty Name="actividad_empresa" ColumnName="actividad_empresa" />
+                <ScalarProperty Name="razonsocial_empresa" ColumnName="razonsocial_empresa" />
+                <ScalarProperty Name="ruc_empresa" ColumnName="ruc_empresa" />
+                <ScalarProperty Name="codigo_interno_empresa" ColumnName="codigo_interno_empresa" />
+                <ScalarProperty Name="id_Empresa" ColumnName="id_Empresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Locales">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Locales">
+              <MappingFragment StoreEntitySet="tbl_Locales">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="orden_local" ColumnName="orden_local" />
+                <ScalarProperty Name="Id_Ubicacion" ColumnName="Id_Ubicacion" />
+                <ScalarProperty Name="direccion_local" ColumnName="direccion_local" />
+                <ScalarProperty Name="nombre_local" ColumnName="nombre_local" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Local" ColumnName="Id_Local" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Delegacion">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Delegacion">
+              <MappingFragment StoreEntitySet="tbl_Delegacion">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre_delegacion" ColumnName="nombre_delegacion" />
+                <ScalarProperty Name="codigo_delegacion" ColumnName="codigo_delegacion" />
+                <ScalarProperty Name="id_Empresa" ColumnName="id_Empresa" />
+                <ScalarProperty Name="id_Delegacion" ColumnName="id_Delegacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Perfil">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Perfil">
+              <MappingFragment StoreEntitySet="tbl_Perfil">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="icono_perfil" ColumnName="icono_perfil" />
+                <ScalarProperty Name="descripcion_perfil" ColumnName="descripcion_perfil" />
+                <ScalarProperty Name="nombre_perfil" ColumnName="nombre_perfil" />
+                <ScalarProperty Name="id_Empresa" ColumnName="id_Empresa" />
+                <ScalarProperty Name="id_Perfil" ColumnName="id_Perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Personal">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Personal">
+              <MappingFragment StoreEntitySet="tbl_Personal">
+                <ScalarProperty Name="id_Proyecto" ColumnName="id_Proyecto" />
+                <ScalarProperty Name="id_Delegacion" ColumnName="id_Delegacion" />
+                <ScalarProperty Name="id_Empresa" ColumnName="id_Empresa" />
+                <ScalarProperty Name="fotoBase64" ColumnName="fotoBase64" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="retiraEquipamiento_Personal" ColumnName="retiraEquipamiento_Personal" />
+                <ScalarProperty Name="retiraMate_Personal" ColumnName="retiraMate_Personal" />
+                <ScalarProperty Name="fechaCese_Personal" ColumnName="fechaCese_Personal" />
+                <ScalarProperty Name="tipoPersonal" ColumnName="tipoPersonal" />
+                <ScalarProperty Name="id_Cargo" ColumnName="id_Cargo" />
+                <ScalarProperty Name="fechaIngreso_Personal" ColumnName="fechaIngreso_Personal" />
+                <ScalarProperty Name="costoMo_Personal" ColumnName="costoMo_Personal" />
+                <ScalarProperty Name="telefono_Personal" ColumnName="telefono_Personal" />
+                <ScalarProperty Name="direccion_Personal" ColumnName="direccion_Personal" />
+                <ScalarProperty Name="nombres_Personal" ColumnName="nombres_Personal" />
+                <ScalarProperty Name="apellidos_Personal" ColumnName="apellidos_Personal" />
+                <ScalarProperty Name="tipoDoc_Personal" ColumnName="tipoDoc_Personal" />
+                <ScalarProperty Name="nroDoc_Personal" ColumnName="nroDoc_Personal" />
+                <ScalarProperty Name="id_Personal" ColumnName="id_Personal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Proyecto">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Proyecto">
+              <MappingFragment StoreEntitySet="tbl_Proyecto">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre_proyecto" ColumnName="nombre_proyecto" />
+                <ScalarProperty Name="id_Empreasa" ColumnName="id_Empreasa" />
+                <ScalarProperty Name="id_Delegacio" ColumnName="id_Delegacio" />
+                <ScalarProperty Name="id_Proyecto" ColumnName="id_Proyecto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Proyecto_Delegacion">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Proyecto_Delegacion">
+              <MappingFragment StoreEntitySet="tbl_Proyecto_Delegacion">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="id_delegacion" ColumnName="id_delegacion" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="id_baremo" ColumnName="id_baremo" />
+                <ScalarProperty Name="id_proyecto_delegacion" ColumnName="id_proyecto_delegacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Tipo_Cambio">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Tipo_Cambio">
+              <MappingFragment StoreEntitySet="tbl_Tipo_Cambio">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="venta_TipoCambio" ColumnName="venta_TipoCambio" />
+                <ScalarProperty Name="compra_TipoCambio" ColumnName="compra_TipoCambio" />
+                <ScalarProperty Name="id_Moneda_Cambio" ColumnName="id_Moneda_Cambio" />
+                <ScalarProperty Name="fecha_TipoCambio" ColumnName="fecha_TipoCambio" />
+                <ScalarProperty Name="Id_Moneda" ColumnName="Id_Moneda" />
+                <ScalarProperty Name="id_TipoCambio" ColumnName="id_TipoCambio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Tipo_Documento">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Tipo_Documento">
+              <MappingFragment StoreEntitySet="tbl_Tipo_Documento">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codigo_Sunat" ColumnName="codigo_Sunat" />
+                <ScalarProperty Name="abreviatura_TipoDocumento" ColumnName="abreviatura_TipoDocumento" />
+                <ScalarProperty Name="descripcion_TipoDocumento" ColumnName="descripcion_TipoDocumento" />
+                <ScalarProperty Name="Id_TipoDocumento" ColumnName="Id_TipoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Alm_Almacenes">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Alm_Almacenes">
+              <MappingFragment StoreEntitySet="tbl_Alm_Almacenes">
+                <ScalarProperty Name="id_Proyecto" ColumnName="id_Proyecto" />
+                <ScalarProperty Name="MatCustodia_almacen" ColumnName="MatCustodia_almacen" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Anterior_Almacen" ColumnName="Anterior_Almacen" />
+                <ScalarProperty Name="Stock_EmpresPersonal" ColumnName="Stock_EmpresPersonal" />
+                <ScalarProperty Name="Stock_EmpresObra" ColumnName="Stock_EmpresObra" />
+                <ScalarProperty Name="stock_OtGeneral" ColumnName="stock_OtGeneral" />
+                <ScalarProperty Name="Stock_multiOtContable" ColumnName="Stock_multiOtContable" />
+                <ScalarProperty Name="stock_DetalleGuia" ColumnName="stock_DetalleGuia" />
+                <ScalarProperty Name="MatBaja_Almacen" ColumnName="MatBaja_Almacen" />
+                <ScalarProperty Name="MatUsado_Almacen" ColumnName="MatUsado_Almacen" />
+                <ScalarProperty Name="MatNormall_Almacen" ColumnName="MatNormall_Almacen" />
+                <ScalarProperty Name="direccion_Almacen" ColumnName="direccion_Almacen" />
+                <ScalarProperty Name="descripcion_Almacen" ColumnName="descripcion_Almacen" />
+                <ScalarProperty Name="id_TipoAlmacen" ColumnName="id_TipoAlmacen" />
+                <ScalarProperty Name="id_Delegacion" ColumnName="id_Delegacion" />
+                <ScalarProperty Name="id_Local" ColumnName="id_Local" />
+                <ScalarProperty Name="id_Empresa" ColumnName="id_Empresa" />
+                <ScalarProperty Name="id_Almacen" ColumnName="id_Almacen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Alm_Materiales">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Alm_Materiales">
+              <MappingFragment StoreEntitySet="tbl_Alm_Materiales">
+                <ScalarProperty Name="esValorizable" ColumnName="esValorizable" />
+                <ScalarProperty Name="Codigo_Cliente" ColumnName="Codigo_Cliente" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Anterior_Material" ColumnName="Anterior_Material" />
+                <ScalarProperty Name="esMenudo" ColumnName="esMenudo" />
+                <ScalarProperty Name="esFactura" ColumnName="esFactura" />
+                <ScalarProperty Name="exige_CableParticionado" ColumnName="exige_CableParticionado" />
+                <ScalarProperty Name="exige_Bobina" ColumnName="exige_Bobina" />
+                <ScalarProperty Name="exige_NroSerie" ColumnName="exige_NroSerie" />
+                <ScalarProperty Name="exige_Kardex" ColumnName="exige_Kardex" />
+                <ScalarProperty Name="exige_FechaVence" ColumnName="exige_FechaVence" />
+                <ScalarProperty Name="exige_Medido" ColumnName="exige_Medido" />
+                <ScalarProperty Name="ultimoPrecio_Material" ColumnName="ultimoPrecio_Material" />
+                <ScalarProperty Name="precioPromedio_Material" ColumnName="precioPromedio_Material" />
+                <ScalarProperty Name="precioCosto_Material" ColumnName="precioCosto_Material" />
+                <ScalarProperty Name="stockMinimo_Material" ColumnName="stockMinimo_Material" />
+                <ScalarProperty Name="tiempoVida_Material" ColumnName="tiempoVida_Material" />
+                <ScalarProperty Name="id_FamiliaMaterial" ColumnName="id_FamiliaMaterial" />
+                <ScalarProperty Name="id_UnidadMedida" ColumnName="id_UnidadMedida" />
+                <ScalarProperty Name="abreviatura_Material" ColumnName="abreviatura_Material" />
+                <ScalarProperty Name="descripcion_Material" ColumnName="descripcion_Material" />
+                <ScalarProperty Name="codigo_Navision" ColumnName="codigo_Navision" />
+                <ScalarProperty Name="codigo_Interno" ColumnName="codigo_Interno" />
+                <ScalarProperty Name="id_Material" ColumnName="id_Material" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Alm_Materiales_Familia">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Alm_Materiales_Familia">
+              <MappingFragment StoreEntitySet="tbl_Alm_Materiales_Familia">
+                <ScalarProperty Name="RetiroMaterial" ColumnName="RetiroMaterial" />
+                <ScalarProperty Name="HojaRora" ColumnName="HojaRora" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Anterior_Familia" ColumnName="Anterior_Familia" />
+                <ScalarProperty Name="abreviatura_FamiliaMaterial" ColumnName="abreviatura_FamiliaMaterial" />
+                <ScalarProperty Name="nombre_FamiliaMaterial" ColumnName="nombre_FamiliaMaterial" />
+                <ScalarProperty Name="id_FamiliaMaterial" ColumnName="id_FamiliaMaterial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Alm_Movimientos_Almacen">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Alm_Movimientos_Almacen">
+              <MappingFragment StoreEntitySet="tbl_Alm_Movimientos_Almacen">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Anterior_Movimiento" ColumnName="Anterior_Movimiento" />
+                <ScalarProperty Name="noAfectaStock_MovAlmacen" ColumnName="noAfectaStock_MovAlmacen" />
+                <ScalarProperty Name="afectaStock_MovAlmacen" ColumnName="afectaStock_MovAlmacen" />
+                <ScalarProperty Name="codigo_Sunat" ColumnName="codigo_Sunat" />
+                <ScalarProperty Name="tipo_MovAlmacen" ColumnName="tipo_MovAlmacen" />
+                <ScalarProperty Name="abreviatura_MovAlmacen" ColumnName="abreviatura_MovAlmacen" />
+                <ScalarProperty Name="descripcion_MovAlmacen" ColumnName="descripcion_MovAlmacen" />
+                <ScalarProperty Name="id_MovAlmacen" ColumnName="id_MovAlmacen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Alm_Tipos_Almacen">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Alm_Tipos_Almacen">
+              <MappingFragment StoreEntitySet="tbl_Alm_Tipos_Almacen">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre_TipoAlmacen" ColumnName="nombre_TipoAlmacen" />
+                <ScalarProperty Name="id_TipoAlmacen" ColumnName="id_TipoAlmacen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Alm_Unidades_Medida">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Alm_Unidades_Medida">
+              <MappingFragment StoreEntitySet="tbl_Alm_Unidades_Medida">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Anterior_UM" ColumnName="Anterior_UM" />
+                <ScalarProperty Name="codigo_Sunat" ColumnName="codigo_Sunat" />
+                <ScalarProperty Name="abreviatura_UnidadMedida" ColumnName="abreviatura_UnidadMedida" />
+                <ScalarProperty Name="nombre_UnidadMedida" ColumnName="nombre_UnidadMedida" />
+                <ScalarProperty Name="id_UnidadMedida" ColumnName="id_UnidadMedida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Areas">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Areas">
+              <MappingFragment StoreEntitySet="tbl_Areas">
+                <ScalarProperty Name="tipoServicio" ColumnName="tipoServicio" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="proceso_area" ColumnName="proceso_area" />
+                <ScalarProperty Name="CodigoEdelnor" ColumnName="CodigoEdelnor" />
+                <ScalarProperty Name="descripcion_area" ColumnName="descripcion_area" />
+                <ScalarProperty Name="nombre_area" ColumnName="nombre_area" />
+                <ScalarProperty Name="id_Area" ColumnName="id_Area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CuentaCorriente">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_CuentaCorriente">
+              <MappingFragment StoreEntitySet="tbl_CuentaCorriente">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="transferenciaDestino_CtaCte" ColumnName="transferenciaDestino_CtaCte" />
+                <ScalarProperty Name="transferenciaOrigen_CtaCte" ColumnName="transferenciaOrigen_CtaCte" />
+                <ScalarProperty Name="devolucionMat_CtaCte" ColumnName="devolucionMat_CtaCte" />
+                <ScalarProperty Name="salidaMat_CtaCte" ColumnName="salidaMat_CtaCte" />
+                <ScalarProperty Name="colaborador_CtaCte" ColumnName="colaborador_CtaCte" />
+                <ScalarProperty Name="transportista" ColumnName="transportista" />
+                <ScalarProperty Name="cliente_CtaCte" ColumnName="cliente_CtaCte" />
+                <ScalarProperty Name="proveedor_CtaCte" ColumnName="proveedor_CtaCte" />
+                <ScalarProperty Name="email_CtaCte" ColumnName="email_CtaCte" />
+                <ScalarProperty Name="contacto_CtaCte" ColumnName="contacto_CtaCte" />
+                <ScalarProperty Name="paginaWeb_CtaCte" ColumnName="paginaWeb_CtaCte" />
+                <ScalarProperty Name="telefono2_CtaCte" ColumnName="telefono2_CtaCte" />
+                <ScalarProperty Name="telefono1_CtaCte" ColumnName="telefono1_CtaCte" />
+                <ScalarProperty Name="direccion_CtaCte" ColumnName="direccion_CtaCte" />
+                <ScalarProperty Name="razonSocial_CtaCte" ColumnName="razonSocial_CtaCte" />
+                <ScalarProperty Name="tipoPersona_CtaCte" ColumnName="tipoPersona_CtaCte" />
+                <ScalarProperty Name="nroRUC_CtaCte" ColumnName="nroRUC_CtaCte" />
+                <ScalarProperty Name="id_CtaCte" ColumnName="id_CtaCte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CuentaCorriente_Servicio">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_CuentaCorriente_Servicio">
+              <MappingFragment StoreEntitySet="tbl_CuentaCorriente_Servicio">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="prioridad_CtaCte_Servicio" ColumnName="prioridad_CtaCte_Servicio" />
+                <ScalarProperty Name="id_Area" ColumnName="id_Area" />
+                <ScalarProperty Name="id_CtaCte" ColumnName="id_CtaCte" />
+                <ScalarProperty Name="id_CtaCte_Servicio" ColumnName="id_CtaCte_Servicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Obra_TD">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Obra_TD">
+              <MappingFragment StoreEntitySet="tbl_Obra_TD">
+                <ScalarProperty Name="Estado_OT_TD" ColumnName="Estado_OT_TD" />
+                <ScalarProperty Name="id_Proyecto" ColumnName="id_Proyecto" />
+                <ScalarProperty Name="id_Delegacion" ColumnName="id_Delegacion" />
+                <ScalarProperty Name="id_Empresa" ColumnName="id_Empresa" />
+                <ScalarProperty Name="factor_contrato" ColumnName="factor_contrato" />
+                <ScalarProperty Name="cecoTD" ColumnName="cecoTD" />
+                <ScalarProperty Name="maniobra_TD" ColumnName="maniobra_TD" />
+                <ScalarProperty Name="tipoClase_TD" ColumnName="tipoClase_TD" />
+                <ScalarProperty Name="subEstacion_TD" ColumnName="subEstacion_TD" />
+                <ScalarProperty Name="alimentador_TD" ColumnName="alimentador_TD" />
+                <ScalarProperty Name="set_TD" ColumnName="set_TD" />
+                <ScalarProperty Name="id_zona" ColumnName="id_zona" />
+                <ScalarProperty Name="id_distrito" ColumnName="id_distrito" />
+                <ScalarProperty Name="nroProyecto_TD" ColumnName="nroProyecto_TD" />
+                <ScalarProperty Name="fecFinPrevisto_TD" ColumnName="fecFinPrevisto_TD" />
+                <ScalarProperty Name="fecIniPrevisto_TD" ColumnName="fecIniPrevisto_TD" />
+                <ScalarProperty Name="nroPrevisto_TD" ColumnName="nroPrevisto_TD" />
+                <ScalarProperty Name="fecVencimiento_TD" ColumnName="fecVencimiento_TD" />
+                <ScalarProperty Name="fecPtaServicio_TD" ColumnName="fecPtaServicio_TD" />
+                <ScalarProperty Name="id_inspectorCliente" ColumnName="id_inspectorCliente" />
+                <ScalarProperty Name="numero_contrato" ColumnName="numero_contrato" />
+                <ScalarProperty Name="id_contrato" ColumnName="id_contrato" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="transferenciaDestino_TD" ColumnName="transferenciaDestino_TD" />
+                <ScalarProperty Name="transferenciaOrigen_TD" ColumnName="transferenciaOrigen_TD" />
+                <ScalarProperty Name="devolucionMat_TD" ColumnName="devolucionMat_TD" />
+                <ScalarProperty Name="salidaMat_TD" ColumnName="salidaMat_TD" />
+                <ScalarProperty Name="id_Ubigeo" ColumnName="id_Ubigeo" />
+                <ScalarProperty Name="id_Colaborador_TD" ColumnName="id_Colaborador_TD" />
+                <ScalarProperty Name="id_Cliente_TD" ColumnName="id_Cliente_TD" />
+                <ScalarProperty Name="fechaTermino_TD" ColumnName="fechaTermino_TD" />
+                <ScalarProperty Name="fechaInicio_TD" ColumnName="fechaInicio_TD" />
+                <ScalarProperty Name="fechaRecepcion_TD" ColumnName="fechaRecepcion_TD" />
+                <ScalarProperty Name="direccion_TD" ColumnName="direccion_TD" />
+                <ScalarProperty Name="id_Area" ColumnName="id_Area" />
+                <ScalarProperty Name="descripcion_TD" ColumnName="descripcion_TD" />
+                <ScalarProperty Name="id_EstaCliente" ColumnName="id_EstaCliente" />
+                <ScalarProperty Name="Codigo_TD" ColumnName="Codigo_TD" />
+                <ScalarProperty Name="id_TipoTD" ColumnName="id_TipoTD" />
+                <ScalarProperty Name="id_TD" ColumnName="id_TD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Obra_TD_Empresa">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Obra_TD_Empresa">
+              <MappingFragment StoreEntitySet="tbl_Obra_TD_Empresa">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="prioridad_TD" ColumnName="prioridad_TD" />
+                <ScalarProperty Name="id_Colaborador_TD" ColumnName="id_Colaborador_TD" />
+                <ScalarProperty Name="id_TD" ColumnName="id_TD" />
+                <ScalarProperty Name="id_ObraTD_Empresa" ColumnName="id_ObraTD_Empresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Tipo_TD">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Tipo_TD">
+              <MappingFragment StoreEntitySet="tbl_Tipo_TD">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codAnt_TipoObra" ColumnName="codAnt_TipoObra" />
+                <ScalarProperty Name="descripcion_TipoObra" ColumnName="descripcion_TipoObra" />
+                <ScalarProperty Name="abreviatura_TipoObra" ColumnName="abreviatura_TipoObra" />
+                <ScalarProperty Name="id_TipoObra" ColumnName="id_TipoObra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TipoDocumento">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_TipoDocumento">
+              <MappingFragment StoreEntitySet="tbl_TipoDocumento">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion_Vehiculo" ColumnName="descripcion_Vehiculo" />
+                <ScalarProperty Name="id_TipoDocumento" ColumnName="id_TipoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cargo_Personal">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Cargo_Personal">
+              <MappingFragment StoreEntitySet="tbl_Cargo_Personal">
+                <ScalarProperty Name="co_pues_trab" ColumnName="co_pues_trab" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre_cargo" ColumnName="nombre_cargo" />
+                <ScalarProperty Name="id_Cargo" ColumnName="id_Cargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cuadrilla_Area">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Cuadrilla_Area">
+              <MappingFragment StoreEntitySet="tbl_Cuadrilla_Area">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="id_Area" ColumnName="id_Area" />
+                <ScalarProperty Name="id_Cuadrilla" ColumnName="id_Cuadrilla" />
+                <ScalarProperty Name="id_Cuadrilla_Area" ColumnName="id_Cuadrilla_Area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cuadrilla_Colaboradora">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Cuadrilla_Colaboradora">
+              <MappingFragment StoreEntitySet="tbl_Cuadrilla_Colaboradora">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="id_CtaCte_Colaborador" ColumnName="id_CtaCte_Colaborador" />
+                <ScalarProperty Name="id_Cuadrilla" ColumnName="id_Cuadrilla" />
+                <ScalarProperty Name="id_CuadrillaColaborador" ColumnName="id_CuadrillaColaborador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cuadrilla_Delegacion">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Cuadrilla_Delegacion">
+              <MappingFragment StoreEntitySet="tbl_Cuadrilla_Delegacion">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_Cuadrilla" ColumnName="id_Cuadrilla" />
+                <ScalarProperty Name="id_Delegacion" ColumnName="id_Delegacion" />
+                <ScalarProperty Name="id_Cuadrilla_Delegacion" ColumnName="id_Cuadrilla_Delegacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cuadrilla_Personal">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Cuadrilla_Personal">
+              <MappingFragment StoreEntitySet="tbl_Cuadrilla_Personal">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="id_Personal" ColumnName="id_Personal" />
+                <ScalarProperty Name="id_Cuadrilla" ColumnName="id_Cuadrilla" />
+                <ScalarProperty Name="id_Cuadrilla_Personal" ColumnName="id_Cuadrilla_Personal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cuadrillas">
+            <EntityTypeMapping TypeName="GestionProyectosModel.tbl_Cuadrillas">
+              <MappingFragment StoreEntitySet="tbl_Cuadrillas">
+                <ScalarProperty Name="nro_placa" ColumnName="nro_placa" />
+                <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
+                <ScalarProperty Name="id_Proyecto" ColumnName="id_Proyecto" />
+                <ScalarProperty Name="id_Delegacion" ColumnName="id_Delegacion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Anterior_Codigo" ColumnName="Anterior_Codigo" />
+                <ScalarProperty Name="instalacionMat_Cuadrilla" ColumnName="instalacionMat_Cuadrilla" />
+                <ScalarProperty Name="salidaMat_Cuadrilla" ColumnName="salidaMat_Cuadrilla" />
+                <ScalarProperty Name="id_Local" ColumnName="id_Local" />
+                <ScalarProperty Name="id_colaborador" ColumnName="id_colaborador" />
+                <ScalarProperty Name="tipo_Cuadrilla" ColumnName="tipo_Cuadrilla" />
+                <ScalarProperty Name="descripcion_Cuadrilla" ColumnName="descripcion_Cuadrilla" />
+                <ScalarProperty Name="codigo_Cuadrilla" ColumnName="codigo_Cuadrilla" />
+                <ScalarProperty Name="id_Empresa" ColumnName="id_Empresa" />
+                <ScalarProperty Name="id_Cuadrilla" ColumnName="id_Cuadrilla" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BC2C0F9F-2946-4FDC-B41D-D61A6A114BA3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entidades</RootNamespace>
+    <AssemblyName>Entidades</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acceso\Login.cs" />
+    <Compile Include="GestionAlmacenes\Mantenimientos\Almacenes_E.cs" />
+    <Compile Include="GestionAlmacenes\Mantenimientos\Obras_E.cs" />
+    <Compile Include="GestionAlmacenes\Mantenimientos\Personal_E.cs" />
+    <Compile Include="GestionProyectosModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProyectosModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProyectosModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProyectosModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProyectosModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tbl_Alm_Almacenes.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Alm_Materiales.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Alm_Materiales_Familia.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Alm_Movimientos_Almacen.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Alm_Tipos_Almacen.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Alm_Unidades_Medida.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Areas.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Cargo_Personal.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Cuadrillas.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Cuadrilla_Area.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Cuadrilla_Colaboradora.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Cuadrilla_Delegacion.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Cuadrilla_Personal.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CuentaCorriente.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CuentaCorriente_Servicio.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Definicion_Opciones.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Delegacion.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Empresas.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Empresa_Usuario.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Locales.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Obra_TD.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Obra_TD_Empresa.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Perfil.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Personal.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Proyecto.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Proyecto_Delegacion.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_TipoDocumento.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Tipo_Cambio.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Tipo_Documento.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Tipo_TD.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Usuarios.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Web_Aceesos.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Web_Page.cs">
+      <DependentUpon>GestionProyectosModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="GestionProyectosModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GestionProyectosModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="GestionProyectosModel.edmx.diagram">
+      <DependentUpon>GestionProyectosModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GestionProyectosModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GestionProyectosModel.edmx</DependentUpon>
+      <LastGenOutput>GestionProyectosModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="GestionProyectosModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GestionProyectosModel.edmx</DependentUpon>
+      <LastGenOutput>GestionProyectosModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GestionAlmacenes\Procesos\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

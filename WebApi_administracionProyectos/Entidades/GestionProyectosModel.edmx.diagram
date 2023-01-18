@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="52ab65d249b141af8c47329b66363df0" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Definicion_Opciones" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Usuarios" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Web_Aceesos" Width="1.5" PointX="5.625" PointY="3.875" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Web_Page" Width="1.5" PointX="3" PointY="7.25" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Definicion_Opciones" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Web_Page_tbl_Definicion_Opciones" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Usuarios" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Web_Aceesos_tbl_Web_Page" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Empresa_Usuario" Width="1.5" PointX="5.625" PointY="0.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Empresas" Width="1.5" PointX="3.375" PointY="12.25" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Locales" Width="1.5" PointX="8.375" PointY="1.375" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Empresa_Usuario_tbl_Empresas" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Empresa_Usuario_tbl_Usuarios" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Delegacion" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Perfil" Width="1.5" PointX="5.75" PointY="8.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Personal" Width="1.5" PointX="7.75" PointY="9.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Proyecto" Width="1.5" PointX="9.75" PointY="9.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Proyecto_Delegacion" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Tipo_Cambio" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Tipo_Documento" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Alm_Almacenes" Width="1.5" PointX="16.25" PointY="0.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Alm_Materiales" Width="1.5" PointX="17.25" PointY="9.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Alm_Materiales_Familia" Width="1.5" PointX="15" PointY="11.5" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Alm_Movimientos_Almacen" Width="1.5" PointX="19" PointY="1.375" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Alm_Tipos_Almacen" Width="1.5" PointX="14" PointY="20.375" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Alm_Unidades_Medida" Width="1.5" PointX="15" PointY="15.625" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Areas" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_CuentaCorriente" Width="1.5" PointX="3.75" PointY="27.5" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_CuentaCorriente_Servicio" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Obra_TD" Width="1.5" PointX="3" PointY="16.75" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Alm_Almacenes_tbl_Alm_Tipos_Almacen" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Alm_Almacenes_tbl_Locales" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Alm_Materiales_tbl_Alm_Materiales_Familia" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Alm_Materiales_tbl_Alm_Unidades_Medida" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_CuentaCorriente_Servicio_tbl_Areas" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Tbl_Obra_TD_tbl_Areas" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Usuarios_tbl_Areas" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_CuentaCorriente_Servicio_tbl_CuentaCorriente" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Obra_TD_Empresa" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Tipo_TD" Width="1.5" PointX="10.375" PointY="14" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_TipoDocumento" Width="1.5" PointX="13.375" PointY="4.75" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Tbl_Obra_TD_tbl_Tipo_TD" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Cargo_Personal" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Cuadrilla_Area" Width="1.5" PointX="9.25" PointY="17.875" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Cuadrilla_Colaboradora" Width="1.5" PointX="9.25" PointY="26.625" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Cuadrilla_Delegacion" Width="1.5" PointX="11.625" PointY="17.75" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Cuadrilla_Personal" Width="1.5" PointX="11.625" PointY="21.625" />
+        <EntityTypeShape EntityType="GestionProyectosModel.tbl_Cuadrillas" Width="1.5" PointX="7" PointY="23.125" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Cuadrilla_Area_tbl_Areas" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Personal_tbl_Cargo_Personal" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Usuarios_tbl_Cargo_Personal" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Cuadrilla_Area_tbl_Cuadrillas" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Cuadrilla_Colaboradora_tbl_Cuadrillas" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Cuadrilla_Colaboradora_tbl_CuentaCorriente" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Cuadrilla" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Delgacion" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Cuadrilla_Personal_tbl_Cuadrillas" />
+        <AssociationConnector Association="GestionProyectosModel.FK_tbl_Cuadrilla_Personal_tbl_Personal" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,154 @@
+
+<div class="card border-left-warning  shadow  ">
+    <div class="card-header">
+        <h6 class="headerTitle"> MANTENIMIENTO LOCALES </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formParamsFiltro">
+            <div class="row" style="margin-top: -10px;">
+                <div class="col-md-3">
+                    <label for=""> Estado</label>
+                    <br>
+                    <select class="form-control comboBox " formControlName="estado">
+                        <option value="0"> [ -- TODOS-- ]</option>
+                        <option value="1"> ACTIVO </option>
+                        <option value="2"> ANULADO </option>
+                    </select>
+                </div>
+                <div class="col-md-6 text-center">
+                    <br>
+                    <div class="text-center">
+                        <button class="btn btn-primary " (click)="mostrarInformacion()" style="font-size: 13px;">  <i class="fas fa-search"> </i> Mostrar </button>
+                        <button class="btn btn-warning ml-2 " (click)="nuevo()" style="font-size: 13px;">  <i class="fa fa-plus-circle"> </i> Nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div class="d-flex justify-content-between" style=" margin-top: -15px;">
+            <div class="p-1 bd-highlight">
+     
+            </div>
+            <div class="p-2 bd-highlight" style="width: 50%;">
+                <input type="text" class="form-control form-control-sm resaltarTexto" placeholder="Buscar" maxlength="50" [(ngModel)]="filtrarMantenimiento">
+            </div>
+            <div class="p-2 bd-highlight"> </div>
+        </div>
+
+        <div class="search-results tableFixHead">
+            <table class="table  table-hover table-sm">
+                <thead class="theadTable">
+
+                    <tr style="height: 40px !important;">
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>DIRECCION</th>
+                        <th>ORDEN</th>
+                        <th>Estado</th>
+                        <th  class="text-center" >Editar</th>
+                        <th  class="text-center" >Anular</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of locales |  filter: filtrarMantenimiento  ; index as j" [ngStyle]="{'color': item.estado == '2' && 'red'}" >
+                        <td scope="row"> {{j + 1}} </td>
+                        <td>{{item.Id_Local}}</td> 
+                        <td>{{item.nombre_local}}</td> 
+                        <td>{{item.direccion_local}}</td> 
+                        <td>{{item.orden_local}}</td> 
+                              <td>{{item.estado==1?'Activo':'Anulado'}} </td>
+                        <td class="text-center">
+                            <span class="badge badge-primary puntero" title="Editar" (click)=" editar(item) " style="padding: 5px;">  <i class="fas fa-pen"></i> Editar </span>
+                        </td>
+                        <td class="text-center">
+                            <span class="badge badge-danger puntero ml-2" title="Anular"  (click)=" anular(item) " style="padding: 5px;"> <i class="fas fa-ban"></i> Anular </span>
+                        </td>
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade " id="modal_mantenimiento" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel  " aria-hidden="true">
+    <div class="modal-dialog   " role="document">
+        <div class="modal-content"  >
+            <div class="p-3 card  modalHeader">
+                <div class="d-flex justify-content-between flotante">
+                    <div class=" bd-highlight">
+                        <i class="fas fa-arrow-circle-left  fa-2x puntero" title="Retornar" (click)="cerrarModal()">  </i>
+                    </div>
+                    <div class=" bd-highlight">
+                        <h5 class="headerTitleModal"> REGISTRO LOCAL </h5>
+                    </div>
+                    <div class=" bd-highlight">
+                    <i class="far fa-times-circle fa-2x puntero" title="Retornar" (click)="cerrarModal()">  </i>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="modal-body">
+                <form [formGroup]="formParams" >
+
+                    <div class="panel-body">
+                                                
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class=" control-label">ID</label>
+                                <input type="text" class="form-control disabledForm"  formControlName="Id_Local"   placeholder=""  >
+                            </div>
+                        </div>      
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" control-label">Empresa</label>
+                                <select class="form-control comboBox" formControlName="Id_Empresa">
+                                    <option value="0"> [ --SELECCIONE-- ]</option>
+                                    <option [value]="item.id" *ngFor="let item of empresas  ">{{item.descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" control-label">Nombre</label>
+                                <input type="text" class="form-control"      formControlName="nombre_local"   placeholder="" maxlength="100">
+                            </div>
+                        </div>        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" control-label">Direccion</label>
+                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  formControlName="direccion_local"  ></textarea>
+                            </div>
+                        </div>      
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class=" control-label">Orden</label>
+                                <input type="number" class="form-control"      formControlName="orden_local"   placeholder="" maxlength="150">
+                            </div>
+                        </div>                   
+                         <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label> Estado</label>
+                                <select class="form-control comboBox" formControlName="estado">
+                                    <option value="-1"> [ --SELECCIONE-- ]</option>
+                                    <option value="1"> Activo </option>
+                                    <option value="2"> Anulado </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>  
+
+                <div class="d-flex justify-content-center">
+                    <div class="p-2 bd-highlight">
+                        <button class="btn btn-success" (click)="saveUpdate()" title="Guardar la informacion"> <i class="fas fa-save"> Grabar</i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

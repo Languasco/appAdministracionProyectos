@@ -1,0 +1,306 @@
+
+<div class="card border-left-warning  shadow  ">
+    <div class="card-header">
+        <h6 class="headerTitle"> MANTENIMIENTO CUENTA CORRIENTE </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formParamsFiltro">
+            <div class="row" style="margin-top: -10px;">
+                <div class="col-md-3">
+                    <label for=""> Estado</label>
+                    <br>
+                    <select class="form-control comboBox " formControlName="estado">
+                        <option value="0"> [ -- TODOS-- ]</option>
+                        <option value="1"> ACTIVO </option>
+                        <option value="2"> ANULADO </option>
+                    </select>
+                </div>
+                <div class="col-md-6 text-center">
+                    <br>
+                    <div class="text-center">
+                        <button class="btn btn-primary " (click)="mostrarInformacion()" style="font-size: 13px;">  <i class="fas fa-search"> </i> Mostrar </button>
+                        <button class="btn btn-warning ml-2 " (click)="nuevo()" style="font-size: 13px;">  <i class="fa fa-plus-circle"> </i> Nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div class="d-flex justify-content-between" style=" margin-top: -15px;">
+            <div class="p-1 bd-highlight">
+     
+            </div>
+            <div class="p-2 bd-highlight" style="width: 50%;">
+                <input type="text" class="form-control form-control-sm resaltarTexto" placeholder="Buscar" maxlength="50" [(ngModel)]="filtrarMantenimiento">
+            </div>
+            <div class="p-2 bd-highlight"> </div>
+        </div>
+
+        <div class="search-results tableFixHead">
+            <table class="table  table-hover table-sm">
+                <thead class="theadTable">
+
+                    <tr style="height: 40px !important;">
+                        <th>#</th>
+                        <th>RUC</th>
+                        <th>RAZON SOCIAL</th>
+                        <th>DIRECCION</th>
+                        <th>TELEFONO</th>
+                        <th>PROVEEDOR</th>
+                        <th>CLIENTE</th>
+                        <th>Estado</th>
+                        <th  class="text-center" >Editar</th>
+                        <th  class="text-center" >Anular</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cuentasCorrientes |  filter: filtrarMantenimiento  ; index as j" [ngStyle]="{'color': item.estado == '2' && 'red'}" >
+                        <td scope="row"> {{j + 1}} </td>
+                        <td>{{item.nroRUC_CtaCte}}</td> 
+                        <td>{{item.razonSocial_CtaCte}}</td> 
+                        <td>{{item.direccion_CtaCte}}</td> 
+                        <td>{{item.telefono1_CtaCte}}</td> 
+                        <td class="text-center" >{{item.proveedor_CtaCte}}</td> 
+                        <td class="text-center" >{{item.cliente_CtaCte}}</td> 
+                        <td>{{item.estado==1?'Activo':'Anulado'}} </td>
+                        <td class="text-center">
+                            <span class="badge badge-primary puntero" title="Editar" (click)=" editar(item) " style="padding: 5px;">  <i class="fas fa-pen"></i> Editar </span>
+                        </td>
+                        <td class="text-center">
+                            <span class="badge badge-danger puntero ml-2" title="Anular"  (click)=" anular(item) " style="padding: 5px;"> <i class="fas fa-ban"></i> Anular </span>
+                        </td>
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade " id="modal_mantenimiento" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel  " aria-hidden="true">
+    <div class="modal-dialog  modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content"  >
+            <div class="p-3 card  modalHeader">
+                <div class="d-flex justify-content-between flotante">
+                    <div class=" bd-highlight">
+                        <i class="fas fa-arrow-circle-left  fa-2x puntero" title="Retornar" (click)="cerrarModal()">  </i>
+                    </div>
+                    <div class=" bd-highlight">
+                        <h5 class="headerTitleModal"> REGISTRO CUENTA CORRIENTE </h5>
+                    </div>
+                    <div class=" bd-highlight">
+                    <i class="far fa-times-circle fa-2x puntero" title="Retornar" (click)="cerrarModal()">  </i>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="modal-body">
+
+
+                <div class="row">
+                    <div class="col-12">
+                         <div id="formTabs" >
+                            <tabset #staticTabsPrincipal style="font-family: 'Montserrat', sans-serif; color:black im !important " >
+                                <tab heading="DATOS GENERALES" (selectTab)="selectTab($event)">    
+                                    <div class="card" style="border: 1px solid #dcdfe2;">
+                                        <div class="card-body">
+                                            <form [formGroup]="formParams" >                                            
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <label class="col-lg-12 control-label">ID</label>
+                                                        <input type="text" class="form-control disabledForm "  formControlName="id_CtaCte"  >
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label class="col-lg-12 control-label">Nro Ruc</label>
+                                                        <input type="text" class="form-control"  formControlName="nroRUC_CtaCte" maxlength="20">
+                                                    </div>      
+                                                    <div class="col-lg-4">
+                                                        <label class="col-lg-12 control-label">Tipo Persona</label>
+                                                        <select class="form-control comboBox " formControlName="tipoPersona_CtaCte">
+                                                            <option value="0"> [ -- SELECCIONE-- ]</option>
+                                                            <option value="N"> NATURAL </option>
+                                                            <option value="J"> JURIDICA </option>
+                                                        </select>
+                                                    </div>     
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-12 control-label">Razon Social</label>
+                                                        <input type="text" class="form-control"  formControlName="razonSocial_CtaCte" maxlength="150">
+                                                    </div>   
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-12 control-label">Direccion</label>
+                                                        <input type="text" class="form-control"  formControlName="direccion_CtaCte" maxlength="150">
+                                                    </div>       
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-lg-12 control-label">Telefono</label>
+                                                        <input type="text" class="form-control"  formControlName="telefono1_CtaCte" maxlength="30">
+                                                    </div>      
+                                                    <div class="col-lg-4">
+                                                        <label class="col-lg-12 control-label">Celular</label>
+                                                        <input type="text" class="form-control"  formControlName="telefono2_CtaCte" maxlength="30">
+                                                    </div>     
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label class="col-lg-12 control-label">Pagina Web</label>
+                                                        <input type="text" class="form-control"  formControlName="paginaWeb_CtaCte" maxlength="100">
+                                                    </div>      
+                                                    <div class="col-lg-6">
+                                                        <label class="col-lg-12 control-label">Email</label>
+                                                        <input type="text" class="form-control"  formControlName="email_CtaCte" maxlength="100">
+                                                    </div>     
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label class="col-lg-12 control-label">Contacto</label>
+                                                        <input type="text" class="form-control"  formControlName="contacto_CtaCte" maxlength="100">
+                                                    </div>      
+                                                 </div>
+
+
+                                                 <fieldset class="shadow" >
+                                                    <legend> Asignación </legend>
+                                                    <div class="panel panel-default">
+                                                      <div class="panel-body ">                            
+                                                            <div class="text-center mb-3">
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="1" value="SI" formControlName="colaborador_CtaCte"  class="custom-control-input"   >
+                                                                    <label class="custom-control-label" for="1">Empresa colaboradora</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="2" value="SI" formControlName="transportista"  class="custom-control-input" >
+                                                                    <label class="custom-control-label" for="2">Transportistas</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="3" value="SI" formControlName="proveedor_CtaCte"  class="custom-control-input"   >
+                                                                    <label class="custom-control-label" for="3">Proveedor</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="4" value="SI" formControlName="cliente_CtaCte"  class="custom-control-input" >
+                                                                    <label class="custom-control-label" for="4">Clientes</label>
+                                                                </div>
+                                                            </div>    
+                                                      </div>
+                                                    </div>                          
+                                                </fieldset>
+                                                    <br>
+                                                <fieldset class="shadow" >
+                                                    <legend> Configuración de transacciones </legend>
+                                                    <div class="panel panel-default">
+                                                      <div class="panel-body ">
+                                    
+                                                            <div class="text-center mb-3">
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="100" value="SI" formControlName="salidaMat_CtaCte"  class="custom-control-input"   >
+                                                                    <label class="custom-control-label" for="100">Salida de materiales</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="200" value="SI" formControlName="devolucionMat_CtaCte"  class="custom-control-input" >
+                                                                    <label class="custom-control-label" for="200">Devolucion de materiales</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="300" value="SI" formControlName="transferenciaOrigen_CtaCte"  class="custom-control-input"   >
+                                                                    <label class="custom-control-label" for="300">Transferencia origen</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="400" value="SI" formControlName="transferenciaDestino_CtaCte"  class="custom-control-input" >
+                                                                    <label class="custom-control-label" for="400">Transferencia destino</label>
+                                                                </div>
+                                                            </div>    
+                                                      </div>
+                                                    </div>                          
+                                                </fieldset>
+                                                <br>
+                                                <div class="row mb-2">
+                                                    <div class="col-md-6">
+                                                        <label> Estado</label>
+                                                        <select class="form-control comboBox" formControlName="estado">
+                                                            <option value="-1"> [ --SELECCIONE-- ]</option>
+                                                            <option value="1"> Activo </option>
+                                                            <option value="2"> Anulado </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="p-2 bd-highlight">
+                                                        <button class="btn btn-success" (click)="saveUpdate()" title="Guardar la informacion"> <i class="fas fa-save"> Grabar</i></button>
+                                                    </div>
+                                                </div>
+
+                                            </form>                                          
+                                        </div>
+                                    </div>    
+                                </tab>
+                                <tab heading="SERVICIOS" (selectTab)="selectTab($event)" *ngIf="idCuentaCorrienteGlobal  > 0" >
+                                    <div class="card" style="border: 1px solid #dcdfe2;">
+                                        <div id="formAnomalias" class="card-body ">
+                                            <form [formGroup]="formParamsServicio" >
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class=" control-label">Servicio</label>
+                                                        <select class="form-control comboBox" formControlName="id_Area"  >
+                                                            <option value="0"> [ --SELECCIONE-- ]</option>
+                                                            <option [value]="item.id" *ngFor="let item of servicios  ">{{item.descripcion}}</option>
+                                                        </select>
+                                                        <div class="custom-control custom-checkbox custom-control-inline" *ngIf="!existePrioridad">
+                                                            <input type="checkbox" id="1000" value="SI"  formControlName="prioridad_CtaCte_Servicio"   class="custom-control-input" >
+                                                            <label class="custom-control-label" for="1000">Prioridad</label>
+                                                        </div>
+                                                    </div>
+                                                </div>     
+                                                <div class="d-flex justify-content-center mt-3">
+                                                    <div class="p-2 bd-highlight">
+                                                        <button class="btn btn-primary" (click)="save_servicios()"  title="Guardar Servicios"> <i class="fas fa-save">  </i> Guardar</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                        
+                                            <div class="tableFixHead">
+                                                <table class="table  table-hover table-sm">
+                                                    <thead class="theadTable">
+                                    
+                                                        <tr style="height: 40px !important;">
+                                                            <th>#</th>
+                                                            <th>CODIGO</th>  
+                                                            <th>DESCRIPCION</th>  
+                                                            <th class="text-center" >PRIORIDAD</th>  
+                                                            <th style="text-align:center">ACCIONES</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of serviciosCab; index as j">
+                                                            <td> {{j + 1}} </td>
+                                                            <td>{{item.id_CtaCte_Servicio}}</td>    
+                                                            <td>{{item.descripcion_area}}</td>    
+                                                            <td class="text-center" >{{item.prioridad_CtaCte_Servicio}}</td>    
+                                                            <td  style="text-align:center">  
+                                                                <span class="badge badge-danger puntero ml-2" title="Eliminar"  (click)=" eliminarServicio(item) " style="padding: 5px;"> <i class="fas fa-trash"></i> Eliminar </span>
+                                                            </td>                                
+                                                        </tr> 
+                                                    </tbody>
+                                                </table>
+                                            </div>  
+                                          
+                                        </div>
+                                    </div>
+                                </tab>
+         
+                            </tabset>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

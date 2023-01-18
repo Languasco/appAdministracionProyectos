@@ -1,0 +1,360 @@
+<div class="card border-left-warning  shadow  ">
+    <div class="card-header">
+        <h6 class="headerTitle"> MANTENIMIENTO DE PERSONAL </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formParamsFiltro">
+            <div class="row" style="margin-top: -10px;">
+                <div class="col-md-4">
+                    <label class=" control-label">Delegacion</label>
+                    <select class="form-control comboBox" formControlName="delegacion" (change)="changeDelegacion($event, false)"  >
+                        <option value="0"> [ --SELECCIONE-- ]</option>
+                        <option [value]="item.id_Delegacion" *ngFor="let item of delegaciones  ">{{item.nombre_delegacion}}</option>
+                    </select>
+                </div> 
+                <div class="col-md-4">
+                    <label class=" control-label">Proyecto</label>
+                    <select class="form-control comboBox" formControlName="proyecto">
+                        <option value="0"> [ --TODOS-- ]</option>
+                        <option [value]="item.id_Proyecto" *ngFor="let item of proyectos  ">{{item.nombre_proyecto}}</option>
+                    </select>
+                </div> 
+                <div class="col-md-4">
+                    <label> Personal </label>
+                    <input type="text" class="form-control"  formControlName="personal" maxlength="50"  placeholder="DNI apellidos o nombres" >
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-6 col-md-2">
+                    <label for=""> Estado</label>
+                    <br>
+                    <select class="form-control comboBox " formControlName="estado">
+                        <option value="0"> [ -- TODOS-- ]</option>
+                        <option value="1"> ACTIVO </option>
+                        <option value="2"> ANULADO </option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-4">
+                    <br>
+                    <div class="text-center">
+                        <button class="btn btn-primary " (click)="mostrarInformacion()" style="font-size: 13px;">  <i class="fas fa-search"> </i> Mostrar </button>
+                        <button class="btn btn-warning ml-2 " (click)="nuevo()" style="font-size: 13px;">  <i class="fa fa-plus-circle"> </i> Nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr>
+  
+        <div class="d-flex justify-content-between" style=" margin-top: -15px;">
+            <div class="p-1 bd-highlight">
+     
+            </div>
+            <div class="p-2 bd-highlight" style="width: 50%;">
+                <input type="text" class="form-control form-control-sm resaltarTexto" placeholder="Buscar" maxlength="50" [(ngModel)]="filtrarMantenimiento">
+            </div>
+            <div class="p-2 bd-highlight"> </div>
+        </div>
+
+        <div class="search-results tableFixHead">
+            <table class="table  table-hover table-sm">
+                <thead class="theadTable">
+                    <tr style="height: 40px !important;">
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>NRO DOC. </th>
+                        <th>APELLIDOS</th>
+                        <th>NOMBRES.</th>
+                        <th>TELEFONO</th>
+                        <th>DIRECCION</th>
+
+                        <th>F.INGRESO</th>
+                        <th>F.CESE</th>
+                        <th>Estado</th>
+                        <th  class="text-center" >Editar</th>
+                        <th  class="text-center" >Anular</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of personalCab |  filter: filtrarMantenimiento  ; index as j" [ngStyle]="{'color': item.estado == '2' && 'red'}" >
+                        <td scope="row"> {{j + 1}} </td>
+                        <td>{{item.id_Personal}}</td> 
+                        <td>{{item.nroDoc_Personal}}</td> 
+                        <td>{{item.apellidos_Personal}}</td> 
+                        <td>{{item.nombres_Personal}}</td> 
+                        <td>{{item.telefono_Personal}}</td> 
+                        <td>{{item.direccion_Personal}}</td> 
+ 
+                        <td>{{item.fechaIngreso_Personal  }}</td> 
+                        <td> {{item.fechaCese_Personal }}</td> 
+                        <td>{{item.estado==1?'Activo':'Anulado'}} </td>
+                        <td class="text-center">
+                            <span class="badge badge-primary puntero" title="Editar" (click)=" editar(item) " style="padding: 5px;">  <i class="fas fa-pen"></i> Editar </span>
+                        </td>
+                        <td class="text-center">
+                            <span class="badge badge-danger puntero ml-2" title="Anular"  (click)=" anular(item) " style="padding: 5px;"> <i class="fas fa-ban"></i> Anular </span>
+                        </td>
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " id="modal_mantenimiento" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel  " aria-hidden="true">
+    <div class="modal-dialog  modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content"  >
+            <div class="p-3 card  modalHeader">
+                <div class="d-flex justify-content-between flotante">
+                    <div class=" bd-highlight">
+                        <i class="fas fa-arrow-circle-left  fa-2x puntero" title="Retornar" (click)="cerrarModal()">  </i>
+                    </div>
+                    <div class=" bd-highlight">
+                        <h5 class="headerTitleModal"> REGISTRO PERSONAL </h5>
+                    </div>
+                    <div class=" bd-highlight">
+                    <i class="far fa-times-circle fa-2x puntero" title="Retornar" (click)="cerrarModal()">  </i>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                         <div id="formTabs" >
+                            <tabset #staticTabsPrincipal style="font-family: 'Montserrat', sans-serif; color:black im !important " >
+                                <tab heading="DATOS GENERALES" (selectTab)="selectTab($event)">    
+                                    <div class="card" style="border: 1px solid #dcdfe2;">
+                                        <div class="card-body">
+                                            <form [formGroup]="formParams" >     
+                                                
+                                                <div class="row">                            
+                                                    <div class="col-md-8">                           
+                                                    <div class="row">
+                                                            <div class="col-md-2">
+                                                                <label class="control-label">ID</label>
+                                                                <input type="text" class="form-control disabledForm "  formControlName="id_Personal"  >
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <label> Delegacion </label>
+                                                                <select class="form-control comboBox" formControlName="id_Delegacion" (change)="changeDelegacion($event, true)"  >
+                                                                    <option value="0"> [ --SELECCIONE-- ]</option>
+                                                                    <option [value]="item.id_Delegacion" *ngFor="let item of delegaciones  ">{{item.nombre_delegacion}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <label> Proyecto </label>
+                                                                <select class="form-control comboBox" formControlName="id_Proyecto">
+                                                                    <option value="0"> [ --SELECCIONE-- ]</option>
+                                                                    <option [value]="item.id_Proyecto" *ngFor="let item of proyectosModal  ">{{item.nombre_proyecto}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="row" id="txt_codigo">
+                                                            <div class="col-md-4">
+                                                                <label> Tipo Documento </label>
+                                                                <select class="form-control comboBox" formControlName="tipoDoc_Personal"   >
+                                                                    <option value="0"> [ --SELECCIONE-- ]</option>
+                                                                    <option value="1"> DNI </option>
+                                                                    <option value="2"> CARNET EXTRANGERIA </option>
+                                                                </select>                                   
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label> Nro Documento </label>
+                                                                <input type="text" class="form-control"  (keypress)="keyPress($event)"  formControlName="nroDoc_Personal" maxlength="20"  placeholder="" >
+                                                            </div>
+                                                        </div>
+                                                                        
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label> Apellidos </label>
+                                                                <input type="text" class="form-control"  formControlName="apellidos_Personal" maxlength="150"  placeholder="" >
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label> Nombres </label>
+                                                                <input type="text" class="form-control"  formControlName="nombres_Personal" maxlength="100"  placeholder="" >
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label> Direccion </label>
+                                                                <input type="text" class="form-control"  formControlName="direccion_Personal" maxlength="150"  placeholder="" >
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <label> Telefono </label>
+                                                                <input type="text" class="form-control"  (keypress)="keyPress2($event)"  formControlName="telefono_Personal" maxlength="30"  placeholder="" >
+                                                            </div>
+                                                            <div class="col-md-5"> 
+                                                                <label> Costo Mano Obra </label>
+                                                                <input type="text" class="form-control"  (keypress)="keyPress($event)"   style="text-align: right;font-weight: bold;" formControlName="costoMo_Personal" maxlength="150"  placeholder="" >
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label> Tipo Personal </label>
+                                                                <select class="form-control comboBox" formControlName="tipoPersonal"    >
+                                                                    <option value="0"> [ --SELECCIONE-- ]</option>
+                                                                    <option value="1"> Propio </option>
+                                                                    <option value="2"> Colaborador </option>
+                                                                </select>                                   
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label> Cargo </label>
+                                                                <select class="form-control comboBox" formControlName="id_Cargo"   >
+                                                                    <option value="0"> [ --SELECCIONE-- ]</option>
+                                                                    <option [value]="item.id_Cargo" *ngFor="let item of cargos  ">{{item.nombre_cargo}}</option>
+                                                                </select>  
+                                                            </div>
+                                                        </div>
+        
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <div class="d-flex justify-content-between">
+                                                                    <div class="p-2 ">
+                                                                        <label> Fecha Ingreso </label>
+                                                                        <input class="form-control" #datepickerYMD="bsDatepicker" bsDatepicker formControlName="fechaIngreso_Personal"  [bsConfig]="datepiekerConfig">
+                                                                    </div>
+                                                                    <div class="p-2 ">
+                                                                        <label> Fecha Cese </label>
+                                                                        <input class="form-control" #datepickerYMD="bsDatepicker" bsDatepicker formControlName="fechaCese_Personal"  [bsConfig]="datepiekerConfig">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>   
+                                                    </div>
+                                                    
+                                                    <div class="col-md-4">
+                                                        <fieldset class="shadow" style=" margin-top: -15px;">
+                                                            <legend>Foto</legend>
+                                                            <div class="panel panel-default ">
+                                                                <div class="panel-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-sm-12">
+                                                                                <div (click)="openFile();" style="text-align: center; cursor:pointer" title=" Click para agregar o reemplazar la imagen">
+                                                                                    <img [src]="imgProducto" title=" Click para agregar o reemplazar la imagen" class="mx-auto d-block" style="width: 100%;height: 230px;">
+                                                                                </div>
+                                                                                <label class="import-file" style="display:none;">                                                  
+                                                                                    <input type="file" id="inputFileOpen" class="form-control-file btn" name="file" accept="image/x-png,image/gif,image/jpeg" (change)="onFileChange($event)" />
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+
+                                                 <fieldset class="shadow mt-2" >
+                                                    <legend> Configuración de Transacciones </legend>
+                                                    <div class="panel panel-default">
+                                                      <div class="panel-body ">                            
+                                                            <div class="text-center mb-3">
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="1" value="SI" formControlName="retiraMate_Personal"  class="custom-control-input"   >
+                                                                    <label class="custom-control-label" for="1"> Responsable de retiro de material del cliente </label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                                    <input type="checkbox" id="2" value="SI" formControlName="retiraEquipamiento_Personal"  class="custom-control-input" >
+                                                                    <label class="custom-control-label" for="2"> Responsable de retiro de equipamiento al personal </label>
+                                                                </div>                        
+                                                            </div>    
+                                                      </div>
+                                                    </div>                          
+                                                </fieldset>
+                                                 <br>
+                                                <div class="row mb-2">
+                                                    <div class="col-md-6">
+                                                        <label> Estado</label>
+                                                        <select class="form-control comboBox" formControlName="estado">
+                                                            <option value="-1"> [ --SELECCIONE-- ]</option>
+                                                            <option value="1"> Activo </option>
+                                                            <option value="2"> Anulado </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="p-2 bd-highlight">
+                                                        <button class="btn btn-success" (click)="saveUpdate()" title="Guardar la informacion"> <i class="fas fa-save"> Grabar</i></button>
+                                                    </div>
+                                                </div>
+
+                                            </form>                                          
+                                        </div>
+                                    </div>    
+                                </tab>
+                                <tab heading="EMPRESA COLABORADORA" (selectTab)="selectTab($event)" *ngIf="idPersonal_Global> 0" >
+                                    <div class="card" style="border: 1px solid #dcdfe2;">
+                                        <div id="formAnomalias" class="card-body ">
+                                            <form [formGroup]="formParamsEmpresa" >
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class=" control-label">Empresa</label>                              
+                                                        <select class="form-control comboBox" formControlName="id_Colaborador_TD">
+                                                            <option value="0"> [ --SELECCIONE-- ]</option>
+                                                            <option [value]="item.id" *ngFor="let item of empresas  ">{{item.descripcion}}</option>
+                                                        </select>
+                                                        <div class="custom-control custom-checkbox custom-control-inline" *ngIf="!existePrioridad">
+                                                            <input type="checkbox" id="1000" value="SI"  formControlName="prioridad_TD"   class="custom-control-input" >
+                                                            <label class="custom-control-label" for="1000">Prioridad</label>
+                                                        </div>
+                                                    </div>
+                                                </div>     
+                                                <div class="d-flex justify-content-center mt-3">
+                                                    <div class="p-2 bd-highlight">
+                                                        <button class="btn btn-primary" (click)="save_obraEmpresa()"  title="Guardar Empresa"> <i class="fas fa-save">  </i> Guardar</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                        
+                                            <div class="tableFixHead">
+                                                <table class="table  table-hover table-sm">
+                                                    <thead class="theadTable">
+                                    
+                                                        <tr style="height: 40px !important;">
+                                                            <th>#</th>
+                                                            <th>RUC</th>  
+                                                            <th>RAZON SOCIAL</th>  
+                                                            <th class="text-center" >PRIORIDAD</th>  
+                                                            <th style="text-align:center">ACCIONES</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of empresasObraDet; index as j">
+                                                            <td> {{j + 1}} </td>
+                                                            <td>{{item.nroRUC_CtaCte}}</td>    
+                                                            <td>{{item.razonSocial_CtaCte}}</td>    
+                                                            <td class="text-center" >{{item.prioridad_TD}}</td>    
+                                                            <td  style="text-align:center">  
+                                                                <span class="badge badge-danger puntero ml-2" title="Eliminar"  (click)=" eliminarEmpresaObra(item) " style="padding: 5px;"> <i class="fas fa-trash"></i> Eliminar </span>
+                                                            </td>                                
+                                                        </tr> 
+                                                    </tbody>
+                                                </table>
+                                            </div>  
+                                          
+                                        </div>
+                                    </div>
+                                </tab>
+         
+                            </tabset>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
